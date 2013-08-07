@@ -1,0 +1,90 @@
+{
+   "endpoints":[
+      {
+         "name":"Content",
+         "methods":[
+            {
+               "MethodName": "Update Content",
+               "Synopsis": "Update a content resource",
+               "HTTPMethod": "PUT",
+               "URI": "/content/:id?instance=:instance",
+               "RequiresOAuth": "N",
+               "parameters":[
+                  {
+                     "Name":"instance",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"Your Kapost instance id or subdomain, ex 'mashable'"
+                  },
+                  {
+                     "Name":"id",
+                     "Required":"Y",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"Content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+                  },
+                  {
+                     "Name":"post[idea_title]",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"Idea title"
+                  },
+                  {
+                     "Name":"post[idea]",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"Idea content (HTML OK)"
+                  },
+                  {
+                     "Name":"post[content_title]",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"Content title"
+                  },
+                  {
+                     "Name":"post[content]",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"Content (HTML OK)"
+                  },
+                  {
+                     "Name":"post[assignee_id]",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"Assigned user id for this content, ex '51f05bc04aaaae4ae800000d'"
+                  }
+               ]
+            },
+            {
+               "MethodName": "Show Content",
+               "Synopsis": "Retrieve a content resource",
+               "HTTPMethod": "GET",
+               "URI": "/content/:id?instance=:instance",
+               "RequiresOAuth": "N",
+               "parameters":[
+                  {
+                     "Name":"instance",
+                     "Required":"N",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"Your Kapost instance id or subdomain, ex 'mashable'"
+                  },
+                  {
+                     "Name":"id",
+                     "Required":"Y",
+                     "Default":"",
+                     "Type":"string",
+                     "Description":"Content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+                  }
+               ]
+            }
+         ]
+      }
+   ]
+}

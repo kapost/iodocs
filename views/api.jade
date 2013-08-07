@@ -22,11 +22,12 @@ block content
                  div (basic HTTP authorization)
                  br
                  div
-                     label(for='key') User name
+                     label(for='key') API Token
                      input(id='username', name='username', style='color=#EEEEEE')
                  div
                      label(for='key') Password
-                     input(id='password', name='password', type='password', value=defaultKey, style='color=#EEEEEE')
+                     div n/a
+                     input(id='password', name='password', type='hidden', value='x', style='color=#EEEEEE')
              - else
                  - if (apiInfo.oauth)
                      input(type='hidden', name='oauth', value='authrequired')
