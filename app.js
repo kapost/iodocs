@@ -500,7 +500,8 @@ function processRequest(req, res, next) {
 
     // Unsecured API Call helper
     function unsecuredCall() {
-        console.log('Unsecured Call');
+        console.log('Unsecured Call:');
+//        console.dir(reqQuery);
 
         if (['POST','PUT','DELETE'].indexOf(httpMethod) === -1) {
             options.path += ((paramString.length > 0) ? '?' + paramString : "");
@@ -515,6 +516,11 @@ function processRequest(req, res, next) {
                 options.path += '?';
             }
             options.path += apiConfig.keyParam + '=' + apiKey;
+        }
+
+        // Perform signature routine, if any.
+        if (apiConfig.auth=='basicAuth') {
+        	options.headers['Authorization']='Basic '+new Buffer(reqQuery.apiUsername+':'+reqQuery.apiPassword).toString('base64');
         }
 
         // Perform signature routine, if any.
