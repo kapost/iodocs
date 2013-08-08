@@ -2,7 +2,7 @@
     "kapost": {
         "name": "Kapost API v1",
         "protocol": "http",
-        "baseURL": "api.lvh.me:3000",
+        "baseURL": "api.witsy.com",
         "publicPath": "/1",
         "headers" : {
 

@@ -1,5 +1,5 @@
 {
-  "title" : "I/O Docs - http://github.com/kapost/iodocs",
+  "title" : "Kapost API Documentation",
   "address": "0.0.0.0",
   "port" : 3001,
   "debug" : false,
@@ -9,9 +9,9 @@
     "password":""
   },
   "redis" : {
-    "host" : "localhost",
-    "port" : 6379,
-    "password" : "",
+    "host" : "grouper.redistogo.com",
+    "port" : 9428,
+    "password" : "6c0d6d719ee91cc43cae870475db7482",
     "database" : "0"
   }
 }
