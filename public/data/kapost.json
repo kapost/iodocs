@@ -7,7 +7,7 @@
           "MethodName": "Show Content",
           "Synopsis": "Retrieve a content resource",
           "HTTPMethod": "GET",
-          "URI": "/content/:id?instance=:instance",
+          "URI": "/content/:id",
           "RequiresOAuth": "N",
           "parameters":[
             {
