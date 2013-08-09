@@ -1,0 +1,102 @@
+/**
+ * This file contains layout instructions for Hulk text inputs
+ */
+.hulk-map-key, .hulk-map-value {
+  padding: 4px 6px;
+  margin: 0 10px 10px 10px; }
+
+.hulk-map-add-pair, .hulk-array-add-row {
+  margin-left: 10px; }
+
+.hulk-map-pair, .hulk-array {
+  margin-left: 30px; }
+
+.hulk-map-add-pair {
+  margin-left: 40px; }
+
+.hulk-separator {
+  position: relative;
+  bottom: 5px;
+  display: inline-block; }
+
+.hulk-collapse-item {
+  margin-bottom: 10px;
+  margin-left: 10px; }
+
+/**
+ * Separate dictionary items in lists 
+ */
+.hulk-array-element > .hulk-map {
+  padding-bottom: 6px;
+  margin-bottom: 16px; }
+
+.hulk-array-element:nth-last-of-type(1) > .hulk-map {
+  padding-bottom: 0;
+  margin-bottom: 0; }
+
+#hulk-save {
+  margin-left: 30px; }
+
+.hulk, .hulk-map-key, .hulk-map-value, .hulk button {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px; }
+
+.hulk-map-key, .hulk-map-value {
+  padding: 7px 10px; }
+
+.hulk-map-key {
+  font-weight: bold; }
+
+.hulk-map-key, .hulk-map-value {
+  border-radius: 3px;
+  border: 1px solid #ccc; }
+
+.hulk-input-textarea {
+  resize: none;
+  vertical-align: top;
+  margin-top: 4px; }
+
+/*.hulk-array-element > input {*/
+/*border: 1px solid blue;*/
+/*}*/
+.hulk button {
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  background-image: linear-gradient(#fafafa, #eaeaea);
+  padding: 5px 10px; }
+  .hulk button:hover {
+    background-image: linear-gradient(#ebebeb, #dbdbdb); }
+
+/**
+ * Separate dictionary items in lists 
+ */
+.hulk-array-element > .hulk-map {
+  border-bottom: 1px solid #ccc; }
+
+.hulk-array-element:nth-last-of-type(1) > .hulk-map {
+  border-bottom: none; }
+
+.hulk .hulk-save {
+  background-color: #a5750d !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#efb73d", endColorstr="#a5750d");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#efb73d), to(#a5750d));
+  background-image: -moz-linear-gradient(top, #efb73d, #a5750d);
+  background-image: -ms-linear-gradient(top, #efb73d, #a5750d);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #efb73d), color-stop(100%, #a5750d));
+  background-image: -webkit-linear-gradient(top, #efb73d, #a5750d);
+  background-image: -o-linear-gradient(top, #efb73d, #a5750d);
+  background-image: linear-gradient(#efb73d, #a5750d);
+  border-color: #a5750d #a5750d #89610b;
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.39);
+  -webkit-font-smoothing: antialiased;
+  min-width: 200px;
+  margin-top: 20px;
+  padding-top: 6px;
+  padding-bottom: 6px; }
+  .hulk .hulk-save:hover {
+    color: #333;
+    text-decoration: none;
+    background-image: linear-gradient(#e0a82e, #966600);
+    cursor: pointer; }

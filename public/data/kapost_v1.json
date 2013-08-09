@@ -1,0 +1,182 @@
+{
+  "endpoints":[
+    {
+      "name":"Content <pre>/1/content/</pre>",
+      "methods":[
+        {
+          "MethodName": "Show Content",
+          "Synopsis": "Retrieve a content resource",
+          "HTTPMethod": "GET",
+          "URI": "/:id",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"instance",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Your Kapost instance id or subdomain, ex 'mashable'"
+            },
+            {
+              "Name":"id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"Content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            },
+            {
+              "Name":"detail",
+              "Required":"N",
+              "Default":"",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "basic",
+                "full"
+              ],
+              "EnumeratedDescription":{
+                "basic": "A short, summary response",
+                "full": "All content details are returned"
+              },
+              "Description":"The level of detail in the response for each record"
+            }
+          ]
+        },
+        {
+          "MethodName": "Update Content",
+          "Synopsis": "Update a content resource",
+          "HTTPMethod": "PUT",
+          "URI": "/:id?instance=:instance",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"instance",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Your Kapost instance id or subdomain, ex 'mashable'"
+            },
+            {
+              "Name":"id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"Content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            },
+            {
+              "Name":"post[idea_title]",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Idea title"
+            },
+            {
+              "Name":"post[idea]",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Idea content (HTML OK)"
+            },
+            {
+              "Name":"post[content_title]",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Content title"
+            },
+            {
+              "Name":"post[content]",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Content (HTML OK)"
+            },
+            {
+              "Name":"post[assignee_id]",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Assigned user id for this content, ex '51f05bc04aaaae4ae800000d'"
+            },
+            {
+              "Name":"post[privacy]",
+              "Required":"N",
+              "Default":"",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "private",
+                "members"
+              ],
+              "EnumeratedDescription":{
+                "private": "Only invited users may see this content (See invitee_ids below)",
+                "members": "Any member of your instance may see this content"
+              },
+              "Description":"Select the privacy setting for this content"
+            },
+            {
+              "Name":"post[invitee_ids][]",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"Array of invited user ids, relevant only if a content privacy is set to private and not yet in production"
+            },
+            {
+              "Name":"post[is_draft]",
+              "Required":"N",
+              "Default":"",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "true",
+                "false"
+              ],
+              "Description":"Whether or not this content is in draft state"
+            },
+            {
+              "Name":"post[campaign_ids][]",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"Array of campaign ids associated with this content"
+            },
+            {
+              "Name":"post[submission_deadline]",
+              "Required":"N",
+              "Default":"",
+              "Type":"timestamp",
+              "Description":"Unix timestamp (in milliseconds, ex 1376092036000)"
+            },
+            {
+              "Name":"post[publish_deadline]",
+              "Required":"N",
+              "Default":"",
+              "Type":"timestamp",
+              "Description":"Unix timestamp (in milliseconds, ex 1376092036000)"
+            }
+          ]
+        },
+        {
+          "MethodName": "Delete Content",
+          "Synopsis": "Permanently destroys a content resource",
+          "HTTPMethod": "DELETE",
+          "URI": "/:id?instance=:instance",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"instance",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Your Kapost instance id or subdomain, ex 'mashable'"
+            },
+            {
+              "Name":"id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"Content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Kapost v1 Configuration Editor</title>
+    <!--<link rel='stylesheet' id='flatui-bootstrap.css-css'  href='bootstrap.min.css' type='text/css' media='all' />-->
+<!--<link rel='stylesheet' id='flatui-bootstrap-responsive.css-css'  href='bootstrap-responsive.min.css' type='text/css' media='all' />-->
+    <link rel="stylesheet" type="text/css" href="hulk-all.css" />
+    <link rel="stylesheet" type="text/css" href="codemirror.css" />
+    <style>
+      body {
+        font-family: "Helvetica Neue", helvetica, arial, sans-serif;
+        margin-bottom: 60px;
+      }
+
+      .CodeMirror {
+        font-family: Consolas, "Andale Mono", Monaco, monospace;
+        min-height: 440px;
+      }
+    </style>
+    <script src="jquery.min.js"></script>
+    <script src="hulk.min.js"></script>
+    <script src="codemirror-compressed.js"></script>
+  </head>
+  <body>
+    <h1>HULK</h1>
+
+    <div class="row">
+      <div class="span12">
+        <h2>Here's some JSON</h2>
+        <p style="color: #a11; font-weight: bold; display: none;" id="observe">Check for the new values!</p>
+        <textarea id="code-mirror"></textarea>
+      </div>
+    </div>
+
+    <h2>Here's the same JSON, represented as HTML</h2>
+    <p>Make some changes to the boxes below. Then click the "Save" button and watch the JSON reload with new values</p>
+    <div id="hulk">
+
+    </div>
+
+    <script>
+      var prettyPrint = function(data) {
+        return JSON.stringify(data, null, '\t');
+      };
+      
+      $(function() {
+        $.get('/data/kapost.json', function(data) {
+          $('#code-mirror').text(prettyPrint(data));
+          var codeMirror = CodeMirror.fromTextArea(
+            document.getElementById('code-mirror'),
+            {
+              lineNumbers: true,
+              readOnly: "nocursor",
+              mode: {
+                name: "javascript",
+                json: true
+              }
+            }
+          );
+
+          $.hulk('#hulk', data, function(data) {
+              codeMirror.setValue(prettyPrint(data));
+              $('body').animate({'scrollTop': "0px"}, function() {
+                $("#observe").show();
+              });
+            }, {
+              'separator': '==>',
+              'depth': 1
+            }
+          );
+        });
+      });
+    </script>
+  </body>
+</html>
+

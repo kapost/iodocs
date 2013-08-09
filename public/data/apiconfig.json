@@ -1,8 +1,8 @@
 {
-    "kapost": {
+    "kapost_v1": {
         "name": "Kapost API v1",
         "protocol": "http",
-        "baseURL": "api.witsy.com",
+        "baseURL": "api.lvh.me:3000",
         "publicPath": "/1",
         "headers" : {
 
