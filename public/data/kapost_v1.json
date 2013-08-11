@@ -7,7 +7,7 @@
           "MethodName": "Show Content",
           "Synopsis": "Retrieve a content resource",
           "HTTPMethod": "GET",
-          "URI": "/:id",
+          "URI": "/content/:id",
           "RequiresOAuth": "N",
           "parameters":[
             {
@@ -45,7 +45,7 @@
           "MethodName": "Update Content",
           "Synopsis": "Update a content resource",
           "HTTPMethod": "PUT",
-          "URI": "/:id?instance=:instance",
+          "URI": "/content/:id?instance=:instance",
           "RequiresOAuth": "N",
           "parameters":[
             {
@@ -157,7 +157,7 @@
           "MethodName": "Delete Content",
           "Synopsis": "Permanently destroys a content resource",
           "HTTPMethod": "DELETE",
-          "URI": "/:id?instance=:instance",
+          "URI": "/content/:id?instance=:instance",
           "RequiresOAuth": "N",
           "parameters":[
             {
