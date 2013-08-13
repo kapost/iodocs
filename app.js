@@ -277,13 +277,34 @@ function oauthSuccess(req, res, next) {
     });
 }
 
+// Delete blank param entries in arbitrary objects. 
+function removeBlankEntries(obj) {
+    for(var param in obj) {
+        if(obj.hasOwnProperty(param)) {
+            // Remove trailing ] character on param names
+            if(/[^\]]]$/i.test(param)) {
+                oldparam = param;
+                param = param.substr(0, param.length-1);
+                obj[param] = obj[oldparam];
+                delete obj[oldparam];
+            }
+
+            if(typeof(obj[param]) === 'object') {
+                removeBlankEntries(obj[param]);
+            } else if(obj[param] === '') {
+                delete obj[param];
+            }
+        }
+    }
+}
+
 //
 // processRequest - handles API call
 //
 function processRequest(req, res, next) {
     if (config.debug) {
         console.log(util.inspect(req.body, null, 3));
-    };
+    }
 
     var reqQuery = req.body,
         customHeaders = {},
@@ -293,7 +314,7 @@ function processRequest(req, res, next) {
         httpMethod = reqQuery.httpMethod,
         apiKey = reqQuery.apiKey,
         apiSecret = reqQuery.apiSecret,
-        apiName = reqQuery.apiName
+        apiName = reqQuery.apiName,
         apiConfig = apisConfig[apiName],
         key = req.sessionID + ':' + apiName;
 
@@ -313,19 +334,25 @@ function processRequest(req, res, next) {
     // Replace placeholders in the methodURL with matching params
     for (var param in params) {
         if (params.hasOwnProperty(param)) {
-            if (params[param] !== '') {
-                // URL params are prepended with ":"
-                var regx = new RegExp(':' + param);
+            // URL params are prepended with ":"
+            var regx = new RegExp(':' + param);
 
-                // If the param is actually a part of the URL, put it in the URL and remove the param
-                if (!!regx.test(methodURL)) {
-                    methodURL = methodURL.replace(regx, params[param]);
-                    delete params[param]
-                }
-            } else {
+            // If the param is actually a part of the URL, put it in the URL and remove the param
+            if (params[param] !== '' && !!regx.test(methodURL)) {
+                methodURL = methodURL.replace(regx, params[param]);
+                delete params[param];
+            }
+
+            if (typeof params[param] === 'object') {
+                removeBlankEntries(params[param]);
+            } else if (params[param] === '') {
                 delete params[param]; // Delete blank params
             }
         }
+    }
+
+    if (config.debug) {
+        console.log("PARAMS: " + util.inspect(params, null, 3));
     }
 
     var baseHostInfo = apiConfig.baseURL.split(':');
@@ -359,7 +386,7 @@ function processRequest(req, res, next) {
         if (apiConfig.oauth.type == 'three-legged' && (reqQuery.oauth == 'authrequired' || (req.session[apiName] && req.session[apiName].authed))) {
             if (config.debug) {
                 console.log('Three Legged OAuth');
-            };
+            }
 
             db.mget([key + ':apiKey',
                      key + ':apiSecret',
@@ -389,7 +416,7 @@ function processRequest(req, res, next) {
                         console.log('Access token: ' + accessToken);
                         console.log('Access token secret: ' + accessTokenSecret);
                         console.log('key: ' + key);
-                    };
+                    }
 
                     oa.getProtectedResource(privateReqURL, httpMethod, accessToken, accessTokenSecret,  function (error, data, response) {
                         req.call = privateReqURL;
@@ -404,7 +431,7 @@ function processRequest(req, res, next) {
                                 req.result = error.data;
                             }
 
-                            res.statusCode = error.statusCode
+                            res.statusCode = error.statusCode;
 
                             next();
                         } else {
@@ -419,7 +446,7 @@ function processRequest(req, res, next) {
         } else if (apiConfig.oauth.type == 'two-legged' && reqQuery.oauth == 'authrequired') { // Two-legged
             if (config.debug) {
                 console.log('Two Legged OAuth');
-            };
+            }
 
             var body,
                 oa = new OAuth(null,
@@ -505,8 +532,6 @@ function processRequest(req, res, next) {
 
         if (['POST','PUT','DELETE'].indexOf(httpMethod) === -1) {
             options.path += ((paramString.length > 0) ? '?' + paramString : "");
-        } else {
-            options.body = paramString;
         }
 
         // Add API Key to params, if any.
@@ -545,13 +570,13 @@ function processRequest(req, res, next) {
         if (reqQuery.headerNames && reqQuery.headerNames.length > 0) {
             if (config.debug) {
                 console.log('Setting headers');
-            };
+            }
             var headers = {};
 
             for (var x = 0, len = reqQuery.headerNames.length; x < len; x++) {
                 if (config.debug) {
                   console.log('Setting header: ' + reqQuery.headerNames[x] + ':' + reqQuery.headerValues[x]);
-                };
+                }
                 if (reqQuery.headerNames[x] != '') {
                     headers[reqQuery.headerNames[x]] = reqQuery.headerValues[x];
                 }
@@ -560,7 +585,7 @@ function processRequest(req, res, next) {
             options.headers = headers;
         }
         if(options.headers === void 0){
-            options.headers = {}
+            options.headers = {};
         }
         if (!options.headers['Content-Length']) {
             if (requestBody) {
@@ -577,12 +602,12 @@ function processRequest(req, res, next) {
 
         if (config.debug) {
             console.log(util.inspect(options));
-        };
+        }
 
         var doRequest;
         if (options.protocol === 'https' || options.protocol === 'https:') {
             console.log('Protocol: HTTPS');
-            options.protocol = 'https:'
+            options.protocol = 'https:';
             doRequest = https.request;
         } else {
             console.log('Protocol: HTTP');
@@ -596,7 +621,7 @@ function processRequest(req, res, next) {
             if (config.debug) {
                 console.log('HEADERS: ' + JSON.stringify(response.headers));
                 console.log('STATUS CODE: ' + response.statusCode);
-            };
+            }
 
             res.statusCode = response.statusCode;
 
@@ -604,7 +629,7 @@ function processRequest(req, res, next) {
 
             response.on('data', function(data) {
                 body += data;
-            })
+            });
 
             response.on('end', function() {
                 delete options.agent;
@@ -626,7 +651,7 @@ function processRequest(req, res, next) {
                 req.resultHeaders = response.headers;
                 req.call = url.parse(options.host + options.path);
                 req.call = url.format(req.call);
-                req.options = options;
+                req.requestBody = requestBody;
 
                 // Response body
                 req.result = body;
@@ -634,13 +659,13 @@ function processRequest(req, res, next) {
                 console.log(util.inspect(body));
 
                 next();
-            })
+            });
         }).on('error', function(e) {
             if (config.debug) {
                 console.log('HEADERS: ' + JSON.stringify(res.headers));
                 console.log("Got error: " + e.message);
                 console.log("Error: " + util.inspect(e));
-            };
+            }
         });
 
         if (requestBody) {
@@ -704,7 +729,7 @@ app.get('/', function(req, res) {
 app.post('/processReq', oauth, processRequest, function(req, res) {
     var result = {
         headers: req.resultHeaders,
-        request: req.options,
+        requestBody: req.requestBody,
         response: req.result,
         call: req.call,
         code: req.res.statusCode

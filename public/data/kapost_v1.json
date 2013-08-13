@@ -141,7 +141,7 @@
               "Description":"Select the privacy setting for this content"
             },
             {
-              "Name":"post[invitee_ids][]",
+              "Name":"post[invitee_ids]",
               "Required":"N",
               "Default":"",
               "Type":"array",
@@ -159,7 +159,7 @@
               "Description":"Whether or not this content is in draft state"
             },
             {
-              "Name":"post[campaign_ids][]",
+              "Name":"post[campaign_ids]",
               "Required":"N",
               "Default":"",
               "Type":"array",

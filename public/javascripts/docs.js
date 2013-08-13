@@ -25,6 +25,10 @@
         $(this.parentNode.parentNode).toggleClass('expanded')
     })
 
+    $('td.parameter > input.add-array-entry').click(function() {
+        $(this).prev().clone().val("").insertBefore(this);
+    })
+
     // Toggle all endpoints
     $('#toggle-endpoints').click(function(event) {
         event.preventDefault();
@@ -238,8 +242,6 @@
                 .addClass('response prettyprint'));
         }
 
-        console.log(params);
-
         $.post('/processReq', params, function(result, text) {
             // If we get passed a signin property, open a window to allow the user to signin/link their account
             if (result.signin) {
@@ -275,11 +277,11 @@
                     .text(formatJSON(response.headers));
             }
 
-            if (["PUT", "POST", "DELETE"].indexOf(response.request.method) >= 0 && response.request.body) {
+            if (response.requestBody) {
                 $('pre.requestbody', resultContainer)
-                    .text(response.request.body);
+                    .text(response.requestBody);
             } else {
-                $('.requestbody').remove()
+                $('pre.requestbody').empty();
             }
 
             // Syntax highlighting
