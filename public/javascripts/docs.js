@@ -209,6 +209,9 @@
             resultContainer.append($(document.createElement('h4')).text('Call'));
             resultContainer.append($(document.createElement('pre')).addClass('call'));
 
+            resultContainer.append($(document.createElement('h4')).addClass('requestbody').text('Request Body'));
+            resultContainer.append($(document.createElement('pre')).addClass('requestbody prettyprint'));
+
             // Code
             resultContainer.append($(document.createElement('h4')).text('Response Code'));
             resultContainer.append($(document.createElement('pre')).addClass('code prettyprint'));
@@ -270,6 +273,13 @@
             if (response.headers) {
                 $('pre.headers', resultContainer)
                     .text(formatJSON(response.headers));
+            }
+
+            if (["PUT", "POST", "DELETE"].indexOf(response.request.method) >= 0 && response.request.body) {
+                $('pre.requestbody', resultContainer)
+                    .text(response.request.body);
+            } else {
+                $('.requestbody').remove()
             }
 
             // Syntax highlighting

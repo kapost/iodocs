@@ -505,6 +505,8 @@ function processRequest(req, res, next) {
 
         if (['POST','PUT','DELETE'].indexOf(httpMethod) === -1) {
             options.path += ((paramString.length > 0) ? '?' + paramString : "");
+        } else {
+            options.body = paramString;
         }
 
         // Add API Key to params, if any.
@@ -624,6 +626,7 @@ function processRequest(req, res, next) {
                 req.resultHeaders = response.headers;
                 req.call = url.parse(options.host + options.path);
                 req.call = url.format(req.call);
+                req.options = options;
 
                 // Response body
                 req.result = body;
@@ -701,6 +704,7 @@ app.get('/', function(req, res) {
 app.post('/processReq', oauth, processRequest, function(req, res) {
     var result = {
         headers: req.resultHeaders,
+        request: req.options,
         response: req.result,
         call: req.call,
         code: req.res.statusCode

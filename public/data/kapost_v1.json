@@ -63,6 +63,34 @@
               "Description":"Content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
             },
             {
+              "Name":"operation",
+              "Required":"N",
+              "Default":"",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "submit",
+                "unsubmit",
+                "archive",
+                "unarchive",
+                "reject"
+              ],
+              "EnumeratedDescription":{
+                "submit": "Submit an idea to share with everyone",
+                "unsubmit": "Revert a submission back into an idea",
+                "archive": "Archive a submission",
+                "unarchive": "Unarchive a submission",
+                "reject": "Reject a submission (must supply reason text)"
+              },
+              "Description":"An optional action to perform on this content"
+            },
+            {
+              "Name":"reject_reason",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Relevent only if performing a reject operation. The reason for the rejection."
+            },
+            {
               "Name":"post[idea_title]",
               "Required":"N",
               "Default":"",
