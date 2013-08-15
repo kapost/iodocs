@@ -4,6 +4,165 @@
       "name":"Content <pre>/1/content/</pre>",
       "methods":[
         {
+          "MethodName": "List Content",
+          "Synopsis": "Retrieve a filtered, paged list of content resources",
+          "HTTPMethod": "GET",
+          "URI": "/content",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"instance",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Your Kapost instance id or subdomain, ex 'mashable'"
+            },
+            {
+              "Name":"detail",
+              "Required":"N",
+              "Default":"",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "basic",
+                "full"
+              ],
+              "EnumeratedDescription":{
+                "basic": "A short, summary response",
+                "full": "All content details are returned"
+              },
+              "Description":"The level of detail in the response for each record"
+            },
+            {
+              "Name":"page",
+              "Required":"N",
+              "Default":"",
+              "Type":"integer",
+              "Description":"The (1-indexed) page number to retrieve."
+            },
+            {
+              "Name":"per_page",
+              "Required":"N",
+              "Default":"",
+              "Type":"integer",
+              "Description":"The number of entries to retrieve per page."
+            },
+            {
+              "Name":"user_id",
+              "Required":"N",
+              "Default":"",
+              "Type":"object id",
+              "Description":"Content filtered for a specified user."
+            },
+            {
+              "Name":"campaign_id",
+              "Required":"N",
+              "Default":"",
+              "Type":"object id",
+              "Description":"Content filtered for a specified campaign."
+            },
+            {
+              "Name":"category",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Decription":"Content filtered for the specified category name(s)"
+            },
+            {
+              "Name":"include_empty_categories",
+              "Required":"N",
+              "Default":"",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "true"
+              ],
+              "Description":"Relevant only if filtering by category"
+            },
+            {
+              "Name":"date_type",
+              "Required":"N",
+              "Default":"",
+              "Type":"enumerated",
+              "Description":"Filter content using the specified date field",
+              "EnumeratedList":[
+                "published",
+                "due",
+                "created_on",
+                "published_on"
+              ]
+            },
+            {
+              "Name":"start",
+              "Required":"N",
+              "Default":"",
+              "Type":"unix timestamp",
+              "Description":"Relevant only if filtering by date. Content greater or equal to this timestamp will be returned."
+            },
+            {
+              "Name":"end",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Relevant only if filtering by date. Content less than or equal to this timestamp will be returned."
+            },
+            {
+              "Name":"files_only",
+              "Required":"N",
+              "Default":"",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "true"
+              ],
+              "Description":"Filter content to return those entries with files"
+            },
+            {
+              "Name":"listener_id",
+              "Required":"N",
+              "Default":"",
+              "Type":"object id",
+              "Description":"Filter content by listener (user) id"
+            },
+            {
+              "Name":"post_type_id",
+              "Required":"N",
+              "Default":"",
+              "Type":"object id",
+              "Description":"Filter content by content type id"
+            },
+            {
+              "Name":"search",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Filter content by search phrase"
+            },
+            {
+              "Name":"content_number",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Filter content by content number"
+            },
+            {
+              "Name":"state",
+              "Required":"N",
+              "Default":"",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "open",
+                "archived",
+                "draft",
+                "idea",
+                "production",
+                "post-production",
+                "completed",
+                "active",
+                "mine"
+              ],
+              "Description":"Filter content by content state"
+            }
+          ]
+        },
+        {
           "MethodName": "Show Content",
           "Synopsis": "Retrieve a content resource",
           "HTTPMethod": "GET",
@@ -38,6 +197,122 @@
                 "full": "All content details are returned"
               },
               "Description":"The level of detail in the response for each record"
+            }
+          ]
+        },
+        {
+          "MethodName": "Create Content",
+          "Synopsis": "Create a content resource",
+          "HTTPMethod": "POST",
+          "URI": "/content?instance=:instance",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"instance",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Your Kapost instance id or subdomain, ex 'mashable'"
+            },
+            {
+              "Name":"create_as",
+              "Required":"N",
+              "Default":"",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "idea",
+                "post"
+              ],
+              "Description":"The state of the created content"
+            },
+            {
+              "Name":"post[idea_title]",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Idea title"
+            },
+            {
+              "Name":"post[idea]",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Idea content (HTML OK)"
+            },
+            {
+              "Name":"post[content_title]",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Content title"
+            },
+            {
+              "Name":"post[content]",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Content (HTML OK)"
+            },
+            {
+              "Name":"post[assignee_id]",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Assigned user id for this content, ex '51f05bc04aaaae4ae800000d'"
+            },
+            {
+              "Name":"post[privacy]",
+              "Required":"N",
+              "Default":"",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "private",
+                "members"
+              ],
+              "EnumeratedDescription":{
+                "private": "Only invited users may see this content (See invitee_ids below)",
+                "members": "Any member of your instance may see this content"
+              },
+              "Description":"Select the privacy setting for this content"
+            },
+            {
+              "Name":"post[invitee_ids]",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"Array of invited user ids, relevant only if a content privacy is set to private and not yet in production"
+            },
+            {
+              "Name":"post[is_draft]",
+              "Required":"N",
+              "Default":"",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "true",
+                "false"
+              ],
+              "Description":"Whether or not this content is in draft state"
+            },
+            {
+              "Name":"post[campaign_ids]",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"Array of campaign ids associated with this content"
+            },
+            {
+              "Name":"post[submission_deadline]",
+              "Required":"N",
+              "Default":"",
+              "Type":"timestamp",
+              "Description":"Unix timestamp (in milliseconds, ex 1376092036000)"
+            },
+            {
+              "Name":"post[publish_deadline]",
+              "Required":"N",
+              "Default":"",
+              "Type":"timestamp",
+              "Description":"Unix timestamp (in milliseconds, ex 1376092036000)"
             }
           ]
         },
