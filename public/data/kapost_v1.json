@@ -313,6 +313,63 @@
               "Default":"",
               "Type":"unix timestamp",
               "Description":"Unix timestamp (in milliseconds, ex 1376092036000)"
+            },
+            {
+              "Name":"post[payment_type]",
+              "Required":"N",
+              "Default":"",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "user",
+                "fixed"
+              ],
+              "EnumeratedDescription": {
+                "user": "Uses the author's rate for the payment amount.",
+                "fixed": "Uses a fixed rate for the payment amount."
+              },
+              "Description":"Use a payment for this post, and select a payment strategy"
+            },
+            {
+              "Name":"post[payment_fixed_rate]",
+              "Required":"N",
+              "Default":"",
+              "Type":"decimal",
+              "Description":"Relevent when using a fixed rate for the payment amount for this post."
+            },
+            {
+              "Name":"post[tags]",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"A string containing a comma-separated list of tags"
+            },
+            {
+              "Name":"post[external_file_url]",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Certain types of posts, such as google drive documents require an external URL reference"
+            },
+            {
+              "Name":"post[persona_ids]",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"If using personas and buying stages, an array of object id's of personas targeted by this content."
+            },
+            {
+              "Name":"post[stage_ids]",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"If using personas and buying stages, an array of object id's of buying stages targeted by this content."
+            },
+            {
+              "Name":"post[post_type_id]",
+              "Required":"N",
+              "Default":"",
+              "Type":"object id",
+              "Description":"Change the content type"
             }
           ]
         },
@@ -503,6 +560,13 @@
               "Default":"",
               "Type":"array",
               "Description":"If using personas and buying stages, an array of object id's of buying stages targeted by this content."
+            },
+            {
+              "Name":"post[post_type_id]",
+              "Required":"N",
+              "Default":"",
+              "Type":"object id",
+              "Description":"Change the content type"
             }
           ]
         },
