@@ -51,14 +51,14 @@
               "Required":"N",
               "Default":"",
               "Type":"object id",
-              "Description":"Content filtered for a specified user."
+              "Description":"Content filtered for a specified user. Accepts both object ids and slugs, ex. '51f05bc04aaaae4ae800000d' or 'john-6'"
             },
             {
               "Name":"campaign_id",
               "Required":"N",
               "Default":"",
               "Type":"object id",
-              "Description":"Content filtered for a specified campaign."
+              "Description":"Content filtered for a specified campaign. Accepts both object ids and slugs, ex. '51f05bc04aaaae4ae80000d' or 'awesome-video-campaign-1'"
             },
             {
               "Name":"category",
@@ -119,14 +119,14 @@
               "Required":"N",
               "Default":"",
               "Type":"object id",
-              "Description":"Filter content by listener (user) id"
+              "Description":"Filter content by listener (user) id. Accepts both object ids and slugs, ex. '51f05bc04aaaae4ae800000d' or 'samantha-james-2'"
             },
             {
               "Name":"post_type_id",
               "Required":"N",
               "Default":"",
               "Type":"object id",
-              "Description":"Filter content by content type id"
+              "Description":"Filter content by content type id. Accepts an object id only."
             },
             {
               "Name":"search",
@@ -257,8 +257,8 @@
               "Name":"post[assignee_id]",
               "Required":"N",
               "Default":"",
-              "Type":"string",
-              "Description":"Assigned user id for this content, ex '51f05bc04aaaae4ae800000d'"
+              "Type":"object id",
+              "Description":"Assigned user id or username slug for this content, ex '51f05bc04aaaae4ae800000d' or 'reuben-dewitt'"
             },
             {
               "Name":"post[privacy]",
@@ -280,7 +280,7 @@
               "Required":"N",
               "Default":"",
               "Type":"array",
-              "Description":"Array of invited user ids, relevant only if a content privacy is set to private and not yet in production"
+              "Description":"Array of invited user object ids or username slugs, relevant only if a content privacy is set to private and not yet in production"
             },
             {
               "Name":"post[is_draft]",
@@ -298,21 +298,21 @@
               "Required":"N",
               "Default":"",
               "Type":"array",
-              "Description":"Array of campaign ids associated with this content"
+              "Description":"Array of campaign object ids or slugs associated with this content"
             },
             {
               "Name":"post[submission_deadline]",
               "Required":"N",
               "Default":"",
               "Type":"unix timestamp",
-              "Description":"Unix timestamp (in milliseconds, ex 1376092036000)"
+              "Description":"Unix timestamp (in milliseconds, ex '1376092036000')"
             },
             {
               "Name":"post[publish_deadline]",
               "Required":"N",
               "Default":"",
               "Type":"unix timestamp",
-              "Description":"Unix timestamp (in milliseconds, ex 1376092036000)"
+              "Description":"Unix timestamp (in milliseconds, ex '1376092036000')"
             },
             {
               "Name":"post[payment_type]",
@@ -454,8 +454,8 @@
               "Name":"post[assignee_id]",
               "Required":"N",
               "Default":"",
-              "Type":"string",
-              "Description":"Assigned user id for this content, ex '51f05bc04aaaae4ae800000d'"
+              "Type":"object id",
+              "Description":"Assigned user id or username slug for this content, ex '51f05bc04aaaae4ae800000d' or 'reuben-dewitt'"
             },
             {
               "Name":"post[privacy]",
@@ -477,7 +477,7 @@
               "Required":"N",
               "Default":"",
               "Type":"array",
-              "Description":"Array of invited user ids, relevant only if a content privacy is set to private and not yet in production"
+              "Description":"Array of invited user object ids or username slugs, relevant only if a content privacy is set to private and not yet in production"
             },
             {
               "Name":"post[is_draft]",
@@ -495,21 +495,21 @@
               "Required":"N",
               "Default":"",
               "Type":"array",
-              "Description":"Array of campaign ids associated with this content"
+              "Description":"Array of campaign object ids or slugs associated with this content"
             },
             {
               "Name":"post[submission_deadline]",
               "Required":"N",
               "Default":"",
               "Type":"timestamp",
-              "Description":"Unix timestamp (in milliseconds, ex 1376092036000)"
+              "Description":"Unix timestamp (in milliseconds, ex '1376092036000')"
             },
             {
               "Name":"post[publish_deadline]",
               "Required":"N",
               "Default":"",
               "Type":"timestamp",
-              "Description":"Unix timestamp (in milliseconds, ex 1376092036000)"
+              "Description":"Unix timestamp (in milliseconds, ex '1376092036000')"
             },
             {
               "Name":"post[payment_type]",
@@ -566,7 +566,7 @@
               "Required":"N",
               "Default":"",
               "Type":"object id",
-              "Description":"Change the content type"
+              "Description":"Modify the content type."
             }
           ]
         },
