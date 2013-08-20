@@ -1,7 +1,7 @@
 {
     "kapost_v1": {
         "name": "Kapost API v1",
-        "protocol": "http",
+        "protocol": "https",
         "baseURL": "api.pilyr.com",
         "publicPath": "/v1",
         "headers" : {
