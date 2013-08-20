@@ -95,14 +95,14 @@
               "Required":"N",
               "Default":"",
               "Type":"unix timestamp",
-              "Description":"Relevant only if filtering by date. Content greater or equal to this timestamp will be returned."
+              "Description":"Relevant only if filtering by date. Content greater or equal to this timestamp will be returned.<br/><br/><strong>Beta Warning</strong>: The format for this field will soon change to <a href='http://www.w3.org/TR/NOTE-datetime'>ISO 8601</a>."
             },
             {
               "Name":"end",
               "Required":"N",
               "Default":"",
               "Type":"unix timestamp",
-              "Description":"Relevant only if filtering by date. Content less than or equal to this timestamp will be returned."
+              "Description":"Relevant only if filtering by date. Content less than or equal to this timestamp will be returned.<br/><br/><strong>Beta Warning</strong>: The format for this field will soon change to <a href='http://www.w3.org/TR/NOTE-datetime'>ISO 8601</a>."
             },
             {
               "Name":"listener_id",
@@ -284,14 +284,14 @@
               "Required":"N",
               "Default":"",
               "Type":"unix timestamp",
-              "Description":"Unix timestamp (in milliseconds, ex '1376092036000')"
+              "Description":"Unix timestamp (in milliseconds, ex '1376092036000')<br/><br/><strong>Beta Warning</strong>: The format for this field will soon change to <a href='http://www.w3.org/TR/NOTE-datetime'>ISO 8601</a>."
             },
             {
               "Name":"publish_deadline",
               "Required":"N",
               "Default":"",
               "Type":"unix timestamp",
-              "Description":"Unix timestamp (in milliseconds, ex '1376092036000')"
+              "Description":"Unix timestamp (in milliseconds, ex '1376092036000')<br/><br/><strong>Beta Warning</strong>: The format for this field will soon change to <a href='http://www.w3.org/TR/NOTE-datetime'>ISO 8601</a>."
             },
             {
               "Name":"payment_type",
@@ -480,15 +480,15 @@
               "Name":"submission_deadline",
               "Required":"N",
               "Default":"",
-              "Type":"timestamp",
-              "Description":"Unix timestamp (in milliseconds, ex '1376092036000')"
+              "Type":"unix timestamp",
+              "Description":"Unix timestamp (in milliseconds, ex '1376092036000')<br/><br/><strong>Beta Warning</strong>: The format for this field will soon change to <a href='http://www.w3.org/TR/NOTE-datetime'>ISO 8601</a>."
             },
             {
               "Name":"publish_deadline",
               "Required":"N",
               "Default":"",
-              "Type":"timestamp",
-              "Description":"Unix timestamp (in milliseconds, ex '1376092036000')"
+              "Type":"unix timestamp",
+              "Description":"Unix timestamp (in milliseconds, ex '1376092036000')<br/><br/><strong>Beta Warning</strong>: The format for this field will soon change to <a href='http://www.w3.org/TR/NOTE-datetime'>ISO 8601</a>."
             },
             {
               "Name":"payment_type",
