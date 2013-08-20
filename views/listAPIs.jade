@@ -2,8 +2,24 @@ extends layout
 block content
   h1=title
 
-  h2 Choose an API
+  h2 Try the Interactive Browser
+  a(href = '/kapost_v1')
+    Interactive API Documentation
+
+  h2 Authentication
+  p The Kapost API requires the use of a user account. On your edit profile page in Kapost, there is an API Token section that contains the authentication token credential you need to authenticate when using the API. All actions taken by the API will appear to originate from this user account.
+
+  p Using the basic auth scheme, put the token string into the username field and "x" (or any value) for the password field. The password field is ignored.
+
+  p The Kapost API utilizes HTTP Basic Authentication
+
+  h2 URL Structure
+  p <span style="color: rgb(57, 197, 57);">https://</span><span style="color: #999;">api.kapost.com/</span><span style="color: brown;">v1</span><span style="color: #999;">/resource/</span><span style="color: goldenrod;">?instance=subdomain</span>
 
   ul
-     - for (var api in apiInfo)
-         li: a(href = '/' + api) #{apiInfo[api].name}
+    li <em>SSL</em> is required
+    li <em>API Version</em> is the first part of the path
+    li <em>instance (query parameter)</em> is optional unless the account you authenticate with belongs to more than one instance.
+
+  h2 Response Format
+  p All responses are in the json format

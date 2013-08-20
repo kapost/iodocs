@@ -22,6 +22,18 @@ blockquote:before, blockquote:after, q:before, q:after {
   content: none;
 }
 
+p {
+  margin: 10px 0;
+}
+
+li {
+  margin: 5px 0;
+}
+
+h2 {
+  margin: 20px 0 10px 0;
+}
+
 #io-footer {
   margin-top: 25px;
 }
