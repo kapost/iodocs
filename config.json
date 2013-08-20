@@ -1,8 +1,8 @@
 {
   "title" : "Kapost API Documentation",
   "address": "0.0.0.0",
-  "port" : 3001,
-  "debug" : true,
+  "port" : 80,
+  "debug" : false,
   "sessionSecret" : "12345",
   "basicAuth": {
     "username":"",
