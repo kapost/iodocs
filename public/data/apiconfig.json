@@ -2,8 +2,8 @@
     "kapost_v1": {
         "name": "Kapost API v1",
         "protocol": "http",
-        "baseURL": "api.witsy.com",
-        "publicPath": "/1",
+        "baseURL": "api.pilyr.com",
+        "publicPath": "/v1",
         "headers" : {
 
         },

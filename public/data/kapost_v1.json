@@ -1,7 +1,7 @@
 {
   "endpoints":[
     {
-      "name":"Content <pre>/1/content/</pre>",
+      "name":"Content <pre>/v1/content/</pre>",
       "methods":[
         {
           "MethodName": "List Content",
