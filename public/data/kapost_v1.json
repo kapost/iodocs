@@ -20,7 +20,7 @@
             {
               "Name":"detail",
               "Required":"N",
-              "Default":"",
+              "Default":"basic",
               "Type":"enumerated",
               "EnumeratedList":[
                 "basic",
@@ -35,14 +35,14 @@
             {
               "Name":"page",
               "Required":"N",
-              "Default":"",
+              "Default":"1",
               "Type":"integer",
               "Description":"The (1-indexed) page number to retrieve."
             },
             {
               "Name":"per_page",
               "Required":"N",
-              "Default":"",
+              "Default":"25",
               "Type":"integer",
               "Description":"The number of entries to retrieve per page."
             },
@@ -569,6 +569,388 @@
               "Default":"",
               "Type":"string",
               "Description":"Content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name":"Custom Fields <pre>/v1/custom_fields/</pre>",
+      "methods":[
+        {
+          "MethodName": "List Custom Fields",
+          "Synopsis": "Retrieve a paged list of custom fields for your current instance",
+          "HTTPMethod": "GET",
+          "URI": "/custom_fields",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"instance",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Your Kapost instance id or subdomain, ex 'mashable'"
+            },
+            {
+              "Name":"page",
+              "Required":"N",
+              "Default":"1",
+              "Type":"integer",
+              "Description":"The (1-indexed) page number to retrieve."
+            },
+            {
+              "Name":"per_page",
+              "Required":"N",
+              "Default":"25",
+              "Type":"integer",
+              "Description":"The number of entries to retrieve per page."
+            }
+          ]
+        },
+        {
+          "MethodName": "Show Custom Field",
+          "Synopsis": "Retrieve a custom field from your current instance",
+          "HTTPMethod": "GET",
+          "URI": "/custom_fields/:id",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"instance",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Your Kapost instance id or subdomain, ex 'mashable'"
+            },
+            {
+              "Name":"id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"Custom field id, ex '51f05bc04aaaae4ae800000d'"
+            }
+          ]
+        },
+        {
+          "MethodName": "Create Custom Field",
+          "Synopsis": "Create a custom field for your current instance",
+          "HTTPMethod": "POST",
+          "URI": "/custom_fields",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"instance",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Your Kapost instance id or subdomain, ex 'mashable'"
+            },
+            {
+              "Name":"field_type",
+              "Required": "Y",
+              "Default":"text",
+              "Description":"The type of field to create",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "text",
+                "select",
+                "date",
+                "image",
+                "rss",
+                "multiselect",
+                "file"
+              ]
+            },
+            {
+              "Name":"display_label",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"Display name of the field to create"
+            },
+            {
+              "Name":"name",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"Field name (Must be unique to your instance)"
+            },
+            {
+              "Name":"location",
+              "Required":"Y",
+              "Default":"primary",
+              "Type":"string",
+              "Description":"Location of this field",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "primary",
+                "gallery"
+              ]
+            },
+            {
+              "Name":"default_value",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Relevant only if field_type is 'text'"
+            },
+            {
+              "Name":"rss_field_type",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Relevant only if field_type is 'rss'",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "author",
+                "categories",
+                "summary",
+                "url",
+                "enclosure",
+                "source",
+                "subhead"
+              ]
+            },
+            {
+              "Name":"select_values",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"Array of values to select from, relevant only if field_type is 'select' or 'multiselect'."
+            },
+            {
+              "Name":"editor_or_admin_only",
+              "Required":"N",
+              "Default":"false",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "true",
+                "false"
+              ],
+              "Description":"Field option: If true, this field is only viewable by Editors and Admins."
+            },
+            {
+              "Name":"display_as_column_selector",
+              "Required":"N",
+              "Default":"false",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "true",
+                "false"
+              ],
+              "Description":"Field option: If true, this field will be available as a column on content feeds. Relevant only if field_type is 'text', 'select', 'multiselect', 'date', or 'rss'"
+            },
+            {
+              "Name":"display_as_filter",
+              "Required":"N",
+              "Default":"false",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "true",
+                "false"
+              ],
+              "Description":"Field option: If true, this field will be available as a custom filter on content feeds. Relevant only if field_type is 'select' or 'multiselect'"
+            },
+            {
+              "Name":"required_field",
+              "Required":"N",
+              "Default":"false",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "true",
+                "false"
+              ],
+              "Description":"Field option: If true, this field will be required when creating a new post."
+            },
+            {
+              "Name":"html",
+              "Required":"N",
+              "Default":"false",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "true",
+                "false"
+              ],
+              "Description":"Field option: If true, this field will provide a rich editor and allow HTML. Relevant only if field_type is 'text'"
+            },
+            {
+              "Name":"multiline",
+              "Required":"N",
+              "Default":"false",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "true",
+                "false"
+              ],
+              "Description":"Field option: If true, this field will provide a multiline editor. Relevant only if field_type is 'text'"
+            }
+          ]
+        },
+        {
+          "MethodName": "Update Custom Field",
+          "Synopsis": "Update a custom field for your current instance",
+          "HTTPMethod": "PUT",
+          "URI": "/custom_fields/:id",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"instance",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Your Kapost instance id or subdomain, ex 'mashable'"
+            },
+            {
+              "Name":"id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"Custom field id, ex '51f05bc04aaaae4ae800000d'"
+            },
+            {
+              "Name":"display_label",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"Display name of the field to create"
+            },
+            {
+              "Name":"name",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"Field name (Must be unique to your instance)"
+            },
+            {
+              "Name":"location",
+              "Required":"Y",
+              "Default":"primary",
+              "Type":"string",
+              "Description":"Location of this field",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "primary",
+                "gallery"
+              ]
+            },
+            {
+              "Name":"default_value",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Relevant only if field_type is 'text'"
+            },
+            {
+              "Name":"rss_field_type",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Relevant only if field_type is 'rss'",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "author",
+                "categories",
+                "summary",
+                "url",
+                "enclosure",
+                "source",
+                "subhead"
+              ]
+            },
+            {
+              "Name":"select_values",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"Array of values to select from, relevant only if field_type is 'select' or 'multiselect'."
+            },
+            {
+              "Name":"editor_or_admin_only",
+              "Required":"N",
+              "Default":"false",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "true",
+                "false"
+              ],
+              "Description":"Field option: If true, this field is only viewable by Editors and Admins."
+            },
+            {
+              "Name":"display_as_column_selector",
+              "Required":"N",
+              "Default":"false",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "true",
+                "false"
+              ],
+              "Description":"Field option: If true, this field will be available as a column on content feeds. Relevant only if field_type is 'text', 'select', 'date', or 'rss'"
+            },
+            {
+              "Name":"display_as_filter",
+              "Required":"N",
+              "Default":"false",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "true",
+                "false"
+              ],
+              "Description":"Field option: If true, this field will be available as a custom filter on content feeds. Relevant only if field_type is 'select' or 'multiselect'"
+            },
+            {
+              "Name":"required_field",
+              "Required":"N",
+              "Default":"false",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "true",
+                "false"
+              ],
+              "Description":"Field option: If true, this field will be required when creating a new post."
+            },
+            {
+              "Name":"html",
+              "Required":"N",
+              "Default":"false",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "true",
+                "false"
+              ],
+              "Description":"Field option: If true, this field will provide a rich editor and allow HTML. Relevant only if field_type is 'text'"
+            },
+            {
+              "Name":"multiline",
+              "Required":"N",
+              "Default":"false",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "true",
+                "false"
+              ],
+              "Description":"Field option: If true, this field will provide a multiline editor. Relevant only if field_type is 'text'"
+            }
+          ]
+        },
+        {
+          "MethodName": "Delete Custom Field",
+          "Synopsis": "Delete a custom field from your current instance",
+          "HTTPMethod": "DELETE",
+          "URI": "/custom_fields/:id",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"instance",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Your Kapost instance id or subdomain, ex 'mashable'"
+            },
+            {
+              "Name":"id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"Custom field id, ex '51f05bc04aaaae4ae800000d'"
             }
           ]
         }
