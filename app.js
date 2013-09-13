@@ -725,6 +725,12 @@ app.get('/', function(req, res) {
     });
 });
 
+app.get('/webhooks', function(req, res) {
+    res.render('webhooks', {
+        title: config.title
+    });
+});
+
 // Process the API request
 app.post('/processReq', oauth, processRequest, function(req, res) {
     var result = {

@@ -1,0 +1,15 @@
+extends layout
+block content
+  h1=title
+
+  a(href = '/') &lt; Back to API Home
+
+  h2 Webhooks
+
+  p Kapost can communicate with your web server in real time whenever content is created, modified, deleted, or published.
+
+  p To configure webhooks, go to Kapost settings and click the Webhooks tab. Enter your (public) server URL. Click 'Save Settings'. Kapost also allows you to send a sample request by clicking the 'Test' button.
+
+  p Kapost will now perform a POST request with a JSON payload against this URL in real time. Here is an example payload:
+
+  <script src="https://gist.github.com/brandonc/6556462.js"></script>
