@@ -6,10 +6,20 @@ block content
 
   h2 Webhooks
 
-  p Kapost can communicate with your web server in real time whenever content is created, modified, deleted, or published.
+  p A webhook is a user-defined HTTP callback. They are triggered whenever an event of interest takes place in your Kapost application.
+  
+  h3 How it Works
 
-  p To configure webhooks, go to Kapost settings and click the Webhooks tab. Enter your (public) server URL. Click 'Save Settings'. Kapost also allows you to send a sample request by clicking the 'Test' button.
+  p Webhooks allow you to collect information about your content as they happen in real time. Provide a URL and Kapost will perform a POST request to that URL whenever content is created, modified, deleted, or published. To test webhooks, use a helper service such as <a href="http://requestb.in">Requestb.in</a> which stores traffic as it happens. Kapost also provides a test button on your webhooks settings page to ensure your server is responding appropriately.
 
-  p Kapost will now perform a POST request with a JSON payload against this URL in real time. Here is an example payload:
+  h3 HTTP/HTTPS Support
+   
+  p We currently support either HTTP or HTTPS urls, so you can have security by using an SSL-enabled url. But keep in mind that your endpoint is going to be wide-open on the internet, and you might not want others to be able to submit random data to your systems. At this time, aside from trying to keep the URL private, our best suggestion is to simply include a secret key in the URL your provide and check that GET parameter in your scripts.
+
+  h3 Payload Examples
+   
+  p The webhook request contains a payload which desribes the event that occurred. Presently, we only issue events based on changing content. Each event contains information about the type of change that occurred, where it occurred, and the entity itself. Here is an example payload:
 
   <script src="https://gist.github.com/brandonc/6556462.js"></script>
+
+  
