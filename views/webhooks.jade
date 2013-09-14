@@ -10,11 +10,11 @@ block content
   
   h3 How it Works
 
-  p Webhooks allow you to collect information about your content as they happen in real time. Provide a URL and Kapost will perform a POST request to that URL whenever content is created, modified, deleted, or published. To test webhooks, use a helper service such as <a href="http://requestb.in">Requestb.in</a> which stores traffic as it happens. Kapost also provides a test button on your webhooks settings page to ensure your server is responding appropriately.
+  p Webhooks allow you to collect information about your content as they happen in real time. Provide a URL and Kapost will perform a POST request to that URL whenever content is created, modified, deleted, or published. To test webhooks, use a helper service such as <a href="http://requestb.in">requestb.in</a> which stores traffic as it happens and allows you to inspect it. Kapost also provides a test button on your webhooks settings page to ensure your server is responding appropriately.
 
-  h3 HTTP/HTTPS Support
+  h3 Security
    
-  p We currently support either HTTP or HTTPS urls, so you can have security by using an SSL-enabled url. But keep in mind that your endpoint is going to be wide-open on the internet, and you might not want others to be able to submit random data to your systems. At this time, aside from trying to keep the URL private, our best suggestion is to simply include a secret key in the URL your provide and check that GET parameter in your scripts.
+  p You may configure an SSL endpoint which will ensure your information is encrypted as it is transmitted.
 
   h3 Payload Examples
    
