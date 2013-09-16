@@ -18,7 +18,7 @@ block content
 
   h3 Payload Examples
    
-  p The webhook request contains a payload which desribes the event that occurred. Presently, we only issue events based on changing content. Each event contains information about the type of change that occurred, where it occurred, and the entity itself. Here is an example payload:
+  p The webhook request contains a payload which desribes the event that occurred. Presently, we only issue events based on changing content. Each event contains information about the type of change that occurred, where it occurred, and the entity itself. The possible types is currently only "content", but this is subject to change as we expand webhooks. The possible operations are "create", "update", "publish", and "delete". Here is an example payload:
 
   <script src="https://gist.github.com/brandonc/6556462.js"></script>
 
