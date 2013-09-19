@@ -1,12 +1,12 @@
 {
     "kapost_v1": {
         "name": "Kapost API v1 (beta)",
-        "protocol": "https",
         "protocol": "http",
+        "protocol": "https",
         "baseURL": "api.lvh.me:3000",
         "baseURL": "api.pilyr.com",
-        "baseURL": "api.kapost.com",
         "baseURL": "api.witsy.com",
+        "baseURL": "api.kapost.com",
         "publicPath": "/v1",
         "headers" : {
 
