@@ -179,9 +179,10 @@
             apiSecret = { name: 'apiSecret', value: $('input[name=secret]').val() },
             apiName = { name: 'apiName', value: $('input[name=apiName]').val() },
             apiUsername = { name: 'apiUsername', value: $('input[name=username]').val() },
-            apiPassword = { name: 'apiPassword', value: $('input[name=password]').val() };
+            apiPassword = { name: 'apiPassword', value: $('input[name=password]').val() },
+            kapost = { name: 'instance', value: $('input[name=instance]').val() };
 
-        params.push(apiKey, apiSecret, apiName, apiUsername, apiPassword);
+        params.push(apiKey, apiSecret, apiName, apiUsername, apiPassword, kapost);
 
         // Setup results container
         var resultContainer = $('.result', self);

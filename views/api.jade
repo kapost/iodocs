@@ -28,6 +28,11 @@ block content
                      label(for='key') Password (Blank)
                      div n/a
                      input(id='password', name='password', type='hidden', value='x', style='color=#EEEEEE')
+                 br
+                 br
+                 h2.clear Kapost Subdomain
+                 div
+                   input(id='instance', name='instance', style='color=#EEEEEE')
              - else
                  - if (apiInfo.oauth)
                      input(type='hidden', name='oauth', value='authrequired')

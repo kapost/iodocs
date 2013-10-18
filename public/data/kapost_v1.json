@@ -11,13 +11,6 @@
           "RequiresOAuth": "N",
           "parameters":[
             {
-              "Name":"instance",
-              "Required":"N",
-              "Default":"",
-              "Type":"string",
-              "Description":"Your Kapost instance id or subdomain, ex 'mashable'"
-            },
-            {
               "Name":"detail",
               "Required":"N",
               "Default":"basic",
@@ -160,13 +153,6 @@
           "RequiresOAuth": "N",
           "parameters":[
             {
-              "Name":"instance",
-              "Required":"N",
-              "Default":"",
-              "Type":"string",
-              "Description":"Your Kapost instance id or subdomain, ex 'mashable'"
-            },
-            {
               "Name":"id",
               "Required":"Y",
               "Default":"",
@@ -197,13 +183,6 @@
           "URI": "/content",
           "RequiresOAuth": "N",
           "parameters":[
-            {
-              "Name":"instance",
-              "Required":"N",
-              "Default":"",
-              "Type":"string",
-              "Description":"Your Kapost instance id or subdomain, ex 'mashable'"
-            },
             {
               "Name":"idea_title",
               "Required":"N",
@@ -359,13 +338,6 @@
           "URI": "/content/:id",
           "RequiresOAuth": "N",
           "parameters":[
-            {
-              "Name":"instance",
-              "Required":"N",
-              "Default":"",
-              "Type":"string",
-              "Description":"Your Kapost instance id or subdomain, ex 'mashable'"
-            },
             {
               "Name":"id",
               "Required":"Y",
@@ -557,18 +529,171 @@
           "RequiresOAuth": "N",
           "parameters":[
             {
-              "Name":"instance",
-              "Required":"N",
+              "Name":"id",
+              "Required":"Y",
               "Default":"",
               "Type":"string",
-              "Description":"Your Kapost instance id or subdomain, ex 'mashable'"
+              "Description":"Content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name":"Content Visibility<pre>/v1/content/:content_id/visibility</pre>",
+      "methods":[
+        {
+          "MethodName": "List Visibility",
+          "Synopsis": "Retrieves a list of all instance members (and eligible groups) and their visibility and notification configuration for the specified content",
+          "HTTPMethod": "GET",
+          "URI": "/content/:content_id/visibility",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"content_id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"The content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            }
+          ]
+        },
+        {
+          "MethodName": "Grant Visibility",
+          "Synopsis": "Grant access to the specified content to an individual contributor",
+          "HTTPMethod": "POST",
+          "URI": "/content/:content_id/visibility",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"content_id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"The content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            },
+            {
+              "Name":"user_id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"The id of the contributor that should be granted access to the specified content"
+            }
+          ]
+        },
+        {
+          "MethodName": "Update Notification Level",
+          "Synopsis": "Change a user's notification setting for the specified content",
+          "HTTPMethod": "PUT",
+          "URI": "/content/:content_id/visibility/:id",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"content_id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"The content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
             },
             {
               "Name":"id",
               "Required":"Y",
               "Default":"",
               "Type":"string",
-              "Description":"Content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+              "Description":"The id of the contributor to modify"
+            },
+            {
+              "Name":"notification_option",
+              "Required":"Y",
+              "Default":"",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "none",
+                "tasks",
+                "all"
+              ],
+              "EnumeratedDescription": {
+                "none": "'Muted'",
+                "tasks": "'Assigned Tasks'",
+                "all": "'Everything'"
+              },
+              "Description":"The notification strategy for the specified user"
+            }
+          ]
+        },
+        {
+          "MethodName": "Revoke Visibility",
+          "Synopsis": "Revoke access to this content for an individual contributor",
+          "HTTPMethod": "DELETE",
+          "URI": "/content/:content_id/visibility/:id",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"content_id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"The content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            },
+            {
+              "Name":"id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"The id of the contributor that should have access revoked from the specified content"
+            }
+          ]
+        },
+        {
+          "MethodName": "Bulk Grant Visibility",
+          "Synopsis": "Grant access to this content for muliple contributors <strong>OR</strong> for a group containing contributors",
+          "HTTPMethod": "POST",
+          "URI": "/content/:content_id/visibility/bulkcreate",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"content_id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"The content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            },
+            {
+              "Name":"ids",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"The ids of contributors that should have access granted to the specified content"
+            },
+            {
+              "Name":"group_id",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"The id of a group containing contributors that should have access granted to the specified content"
+            }
+          ]
+        },
+        {
+          "MethodName": "Bulk Revoke Visibility",
+          "Synopsis": "Grant access to this content for muliple contributors",
+          "HTTPMethod": "DELETE",
+          "URI": "/content/:content_id/visibility/bulkdestroy",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"content_id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"The content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            },
+            {
+              "Name":"ids",
+              "Required":"Y",
+              "Default":"",
+              "Type":"array",
+              "Description":"The ids of contributors that should have access revoked from the specified content"
             }
           ]
         }
@@ -584,13 +709,6 @@
           "URI": "/custom_fields",
           "RequiresOAuth": "N",
           "parameters":[
-            {
-              "Name":"instance",
-              "Required":"N",
-              "Default":"",
-              "Type":"string",
-              "Description":"Your Kapost instance id or subdomain, ex 'mashable'"
-            },
             {
               "Name":"page",
               "Required":"N",
@@ -615,13 +733,6 @@
           "RequiresOAuth": "N",
           "parameters":[
             {
-              "Name":"instance",
-              "Required":"N",
-              "Default":"",
-              "Type":"string",
-              "Description":"Your Kapost instance id or subdomain, ex 'mashable'"
-            },
-            {
               "Name":"id",
               "Required":"Y",
               "Default":"",
@@ -637,13 +748,6 @@
           "URI": "/custom_fields",
           "RequiresOAuth": "N",
           "parameters":[
-            {
-              "Name":"instance",
-              "Required":"N",
-              "Default":"",
-              "Type":"string",
-              "Description":"Your Kapost instance id or subdomain, ex 'mashable'"
-            },
             {
               "Name":"field_type",
               "Required": "Y",
@@ -793,13 +897,6 @@
           "RequiresOAuth": "N",
           "parameters":[
             {
-              "Name":"instance",
-              "Required":"N",
-              "Default":"",
-              "Type":"string",
-              "Description":"Your Kapost instance id or subdomain, ex 'mashable'"
-            },
-            {
               "Name":"id",
               "Required":"Y",
               "Default":"",
@@ -938,13 +1035,6 @@
           "URI": "/custom_fields/:id",
           "RequiresOAuth": "N",
           "parameters":[
-            {
-              "Name":"instance",
-              "Required":"N",
-              "Default":"",
-              "Type":"string",
-              "Description":"Your Kapost instance id or subdomain, ex 'mashable'"
-            },
             {
               "Name":"id",
               "Required":"Y",

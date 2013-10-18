@@ -11,12 +11,11 @@ block content
   p The Kapost API utilizes HTTP Basic Authentication. Using standard basic auth scheme, put the token string into the username field and "x" (or any value) for the password field. The password field is ignored.
 
   h2 URL Structure
-  p <span style="color: rgb(57, 197, 57);">https://</span><span style="color: #999;">api.kapost.com/</span><span style="color: brown;">v1</span><span style="color: #999;">/resource/</span><span style="color: goldenrod;">?instance=subdomain</span>
+  p <span style="color: rgb(57, 197, 57);">https://</span><span style="color: goldenrod;">your_instance</span><span style="color: #999;">.kapost.com/</span><span style="color: brown;">api/v1</span><span style="color: #999;">/resource/</span>
 
   ul
     li <em>SSL</em> is required
     li <em>API Version</em> is the first part of the path
-    li <em>instance (query parameter)</em> is optional unless the account you authenticate with belongs to more than one instance.
 
   h2 Response Format
   p All responses are in the json format.

@@ -316,7 +316,8 @@ function processRequest(req, res, next) {
         apiSecret = reqQuery.apiSecret,
         apiName = reqQuery.apiName,
         apiConfig = apisConfig[apiName],
-        key = req.sessionID + ':' + apiName;
+        key = req.sessionID + ':' + apiName,
+        kapost_instance = reqQuery.instance;
 
     // Extract custom headers from the params
     for( var param in params )
@@ -365,11 +366,11 @@ function processRequest(req, res, next) {
         headers[header] = customHeaders[header];
 
     var paramString = query.stringify(params),
-        privateReqURL = apiConfig.protocol + '://' + apiConfig.baseURL + apiConfig.privatePath + methodURL + ((paramString.length > 0) ? '?' + paramString : ""),
+        privateReqURL = apiConfig.protocol + '://' + kapost_instance + "." + apiConfig.baseUrl + apiConfig.privatePath + methodURL + ((paramString.length > 0) ? '?' + paramString : ""),
         options = {
             headers: headers,
             protocol: apiConfig.protocol + ':',
-            host: baseHostUrl,
+            host: kapost_instance + "." + baseHostUrl,
             port: baseHostPort,
             method: httpMethod,
             path: apiConfig.publicPath + methodURL// + ((paramString.length > 0) ? '?' + paramString : "")
