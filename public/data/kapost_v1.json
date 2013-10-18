@@ -1,7 +1,7 @@
 {
   "endpoints":[
     {
-      "name":"Content <pre>/v1/content/</pre>",
+      "name":"Content <pre>/api/v1/content/</pre>",
       "methods":[
         {
           "MethodName": "List Content",
@@ -540,7 +540,7 @@
       ]
     },
     {
-      "name":"Content Visibility<pre>/v1/content/:content_id/visibility</pre>",
+      "name":"Content Visibility<pre>/api/v1/content/:content_id/visibility</pre>",
       "methods":[
         {
           "MethodName": "List Visibility",
@@ -700,7 +700,7 @@
       ]
     },
     {
-      "name":"Custom Fields <pre>/v1/custom_fields/</pre>",
+      "name":"Custom Fields <pre>/api/v1/custom_fields/</pre>",
       "methods":[
         {
           "MethodName": "List Custom Fields",
