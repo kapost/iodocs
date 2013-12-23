@@ -1,6 +1,349 @@
 {
   "endpoints":[
     {
+      "name":"Tasks <pre>/api/v1/content/:content_id/tasks/</pre> or <pre>/api/v1/campaign/:campaign_id/tasks/</pre>",
+      "methods":[
+        {
+          "MethodName": "List Tasks",
+          "Synopsis": "Retrieves a list of tasks for the specified content",
+          "HTTPMethod": "GET",
+          "URI": "/content/:content_id/tasks",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"content_id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"object id",
+              "Description":"The content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            }
+          ]
+        },
+        {
+          "MethodName": "Create Task",
+          "Synopsis": "Create a task on the specified content/campaign",
+          "HTTPMethod": "POST",
+          "URI": "/content/:content_id/tasks",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"content_id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"object id",
+              "Description":"The content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            },
+            {
+              "Name":"description",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"The title for the task"
+            },
+            {
+              "Name":"completion_action",
+              "Required":"Y",
+              "Default":"",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "manual",
+                "create_idea",
+                "assign",
+                "add_attachment",
+                "submit",
+                "publish",
+                "schedule_publish",
+                "add_webinar_recording",
+                "add_webinar",
+                "host_webinar",
+                "promote_to_facebook",
+                "promote_to_twitter",
+                "promote_to_linkedin"
+              ],
+              "EnumeratedDescription": {
+                "manual": "Must be checked off manually by the task owner or an admin/editor",
+                "create_idea": "Completed when the idea is submitted",
+                "assign": "Completed when the content is assigned",
+                "add_attachment": "Completed when an attachment is added",
+                "submit": "Completed when content is submitted",
+                "publish": "Completed when content is published",
+                "schedule_publish": "Completed when content is scheduled for publishing",
+                "add_webinar_recording": "Completed when a ReadyTalk Recording is added",
+                "add_webinar": "Completed when connected to ReadyTalk",
+                "host_webinar": "Completd when hosting a webinar",
+                "promote_to_facebook": "Completed when a promotional status is published to Facebook",
+                "promote_to_twitter": "Completed when a promotional status is published to Twitter",
+                "promote_to_linkedin": "Completed when a promotional status is published to LinkedIn"
+              },
+              "Description":"The action required for this task to be completed."
+            },
+            {
+              "Name":"deadline",
+              "Required":"N",
+              "Default":"",
+              "Type":"utc date",
+              "Description":"If using an absolute date, the iso8601-formatted deadline of the task"
+            },
+            {
+              "Name":"deadline_offset",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "EnumeratedList":[
+                "days",
+                "hours"
+              ],
+              "Description":"If using a relative deadline, the interval to use."
+            },
+            {
+              "Name":"deadline_offset_unit",
+              "Required":"N",
+              "Default":"",
+              "Type":"integer",
+              "Description":"If using a relative deadline, the number of units to offset the relative deadline by"
+            },
+            {
+              "Name":"deadline_offset_action",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "EnumeratedList":[
+                "submission_occurs",
+                "submission_deadline",
+                "publishing_occurs",
+                "publish_deadline"
+              ],
+              "Description":"If using a relative deadline, action to make the deadline relative to"
+            },
+            {
+              "Name":"deadline_offset_action",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "EnumeratedList":[
+                "submission_occurs",
+                "submission_deadline",
+                "publishing_occurs",
+                "publish_deadline"
+              ],
+              "EnumeratedDescription": {
+                "submission_occurs": "The deadline is relative to when the content was submitted.",
+                "submission_deadline": "The deadline is relative to the content submission deadline.",
+                "publishing_occurs": "The deadline is relative to when the content was published.",
+                "publish_deadline": "The deadline is relative to content publish deadline."
+              },
+              "Description":"If using a relative deadline, action to make the deadline relative to"
+            },
+            {
+              "Name":"user_ids",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"A string containing a comma-separated list of user ids to assign as the task owners."
+            },
+            {
+              "Name":"state",
+              "Required":"N",
+              "Default":"",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "0", "1", "2"
+              ],
+              "EnumeratedDescription":{
+                "0": "Idea State",
+                "1": "In Production State",
+                "2": "Post Production State"
+              },
+              "Description":"Not used for campaigns. The state group which the task appears in the workflow."
+            },
+            {
+              "Name":"position",
+              "Required":"Y",
+              "Default":"",
+              "Type":"integer",
+              "Description":"The numeric ordering of this task [within the same 'state' for content]. Be aware that other tasks will likely be repositioned based on this value."
+            }
+          ]
+        },
+        {
+          "MethodName": "Update Task",
+          "Synopsis": "Update a task on the specified content/campaign",
+          "HTTPMethod": "PUT",
+          "URI": "/content/:content_id/tasks/:id",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"content_id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"object id",
+              "Description":"The content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            },
+            {
+              "Name":"id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"object id",
+              "Description":"The task id"
+            },
+            {
+              "Name":"description",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"The title for the task"
+            },
+            {
+              "Name":"completion_action",
+              "Required":"Y",
+              "Default":"",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "manual",
+                "create_idea",
+                "assign",
+                "add_attachment",
+                "submit",
+                "publish",
+                "schedule_publish",
+                "add_webinar_recording",
+                "add_webinar",
+                "host_webinar",
+                "promote_to_facebook",
+                "promote_to_twitter",
+                "promote_to_linkedin"
+              ],
+              "EnumeratedDescription": {
+                "manual": "Must be checked off manually by the task owner or an admin/editor",
+                "create_idea": "Completed when the idea is submitted",
+                "assign": "Completed when the content is assigned",
+                "add_attachment": "Completed when an attachment is added",
+                "submit": "Completed when content is submitted",
+                "publish": "Completed when content is published",
+                "schedule_publish": "Completed when content is scheduled for publishing",
+                "add_webinar_recording": "Completed when a ReadyTalk Recording is added",
+                "add_webinar": "Completed when connected to ReadyTalk",
+                "host_webinar": "Completd when hosting a webinar",
+                "promote_to_facebook": "Completed when a promotional status is published to Facebook",
+                "promote_to_twitter": "Completed when a promotional status is published to Twitter",
+                "promote_to_linkedin": "Completed when a promotional status is published to LinkedIn"
+              },
+              "Description":"The action required for this task to be completed."
+            },
+            {
+              "Name":"deadline",
+              "Required":"N",
+              "Default":"",
+              "Type":"utc date",
+              "Description":"If using an absolute date, the iso8601-formatted deadline of the task"
+            },
+            {
+              "Name":"deadline_offset",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "EnumeratedList":[
+                "days",
+                "hours"
+              ],
+              "Description":"If using a relative deadline, the interval to use."
+            },
+            {
+              "Name":"deadline_offset_unit",
+              "Required":"N",
+              "Default":"",
+              "Type":"integer",
+              "Description":"If using a relative deadline, the number of units to offset the relative deadline by"
+            },
+            {
+              "Name":"deadline_offset_action",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "EnumeratedList":[
+                "submission_occurs",
+                "submission_deadline",
+                "publishing_occurs",
+                "publish_deadline"
+              ],
+              "Description":"If using a relative deadline, action to make the deadline relative to"
+            },
+            {
+              "Name":"deadline_offset_action",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "EnumeratedList":[
+                "submission_occurs",
+                "submission_deadline",
+                "publishing_occurs",
+                "publish_deadline"
+              ],
+              "EnumeratedDescription": {
+                "submission_occurs": "The deadline is relative to when the content was submitted.",
+                "submission_deadline": "The deadline is relative to the content submission deadline.",
+                "publishing_occurs": "The deadline is relative to when the content was published.",
+                "publish_deadline": "The deadline is relative to content publish deadline."
+              },
+              "Description":"If using a relative deadline, action to make the deadline relative to"
+            },
+            {
+              "Name":"user_ids",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"A string containing a comma-separated list of user ids to assign as the task owners."
+            },
+            {
+              "Name":"state",
+              "Required":"N",
+              "Default":"",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "0", "1", "2"
+              ],
+              "EnumeratedDescription":{
+                "0": "Idea State",
+                "1": "In Production State",
+                "2": "Post Production State"
+              },
+              "Description":"Not used for campaigns. The state group which the task appears in the workflow."
+            },
+            {
+              "Name":"position",
+              "Required":"Y",
+              "Default":"",
+              "Type":"integer",
+              "Description":"The numeric ordering of this task [within the same 'state' for content]. Be aware that other tasks will likely be repositioned based on this value."
+            }
+          ]
+        },
+        {
+          "MethodName": "Delete Task",
+          "Synopsis": "Destroys a task on the specified workflow",
+          "HTTPMethod": "DELETE",
+          "URI": "/content/:content_id/tasks/:id",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"content_id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"The content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            },
+            {
+              "Name":"id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"The id of the task to delete"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name":"Content <pre>/api/v1/content/</pre>",
       "methods":[
         {
@@ -87,14 +430,14 @@
               "Name":"start",
               "Required":"N",
               "Default":"",
-              "Type":"unix timestamp",
+              "Type":"utc date",
               "Description":"Relevant only if filtering by date. Content greater or equal to this timestamp will be returned.<br/><br/><strong>Beta Warning</strong>: The format for this field will soon change to <a href='http://www.w3.org/TR/NOTE-datetime'>ISO 8601</a>."
             },
             {
               "Name":"end",
               "Required":"N",
               "Default":"",
-              "Type":"unix timestamp",
+              "Type":"utc date",
               "Description":"Relevant only if filtering by date. Content less than or equal to this timestamp will be returned.<br/><br/><strong>Beta Warning</strong>: The format for this field will soon change to <a href='http://www.w3.org/TR/NOTE-datetime'>ISO 8601</a>."
             },
             {
@@ -262,14 +605,14 @@
               "Name":"submission_deadline",
               "Required":"N",
               "Default":"",
-              "Type":"unix timestamp",
+              "Type":"utc date",
               "Description":"Unix timestamp (in milliseconds, ex '1376092036000')<br/><br/><strong>Beta Warning</strong>: The format for this field will soon change to <a href='http://www.w3.org/TR/NOTE-datetime'>ISO 8601</a>."
             },
             {
               "Name":"publish_deadline",
               "Required":"N",
               "Default":"",
-              "Type":"unix timestamp",
+              "Type":"utc date",
               "Description":"Unix timestamp (in milliseconds, ex '1376092036000')<br/><br/><strong>Beta Warning</strong>: The format for this field will soon change to <a href='http://www.w3.org/TR/NOTE-datetime'>ISO 8601</a>."
             },
             {
@@ -452,14 +795,14 @@
               "Name":"submission_deadline",
               "Required":"N",
               "Default":"",
-              "Type":"unix timestamp",
+              "Type":"utc date",
               "Description":"Unix timestamp (in milliseconds, ex '1376092036000')<br/><br/><strong>Beta Warning</strong>: The format for this field will soon change to <a href='http://www.w3.org/TR/NOTE-datetime'>ISO 8601</a>."
             },
             {
               "Name":"publish_deadline",
               "Required":"N",
               "Default":"",
-              "Type":"unix timestamp",
+              "Type":"utc date",
               "Description":"Unix timestamp (in milliseconds, ex '1376092036000')<br/><br/><strong>Beta Warning</strong>: The format for this field will soon change to <a href='http://www.w3.org/TR/NOTE-datetime'>ISO 8601</a>."
             },
             {
