@@ -1007,13 +1007,6 @@
               "Default":"",
               "Type":"array",
               "Description":"The ids of contributors that should have access granted to the specified content"
-            },
-            {
-              "Name":"group_id",
-              "Required":"N",
-              "Default":"",
-              "Type":"string",
-              "Description":"The id of a group containing contributors that should have access granted to the specified content"
             }
           ]
         },
