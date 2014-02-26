@@ -455,6 +455,13 @@
               "Description":"Filter content by content type id. Accepts an object id only."
             },
             {
+              "Name":"destination_id",
+              "Required":"N",
+              "Default":"",
+              "Type":"object id",
+              "Description":"Filter content by destination id. Accepts an object id only."
+            },
+            {
               "Name":"search",
               "Required":"N",
               "Default":"",
