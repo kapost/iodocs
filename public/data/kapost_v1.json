@@ -1381,6 +1381,110 @@
           ]
         }
       ]
+    },
+    {
+      "name":"Reminders <pre>/api/v1/content/:content_id/reminders/</pre> or <pre>/api/v1/campaign/:campaign_id/reminders/</pre>",
+      "methods":[
+        {
+          "MethodName": "List Reminders",
+          "Synopsis": "Retrieves a list of your reminders for the specified content or campaign",
+          "HTTPMethod": "GET",
+          "URI": "/content/:content_id/reminders",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"content_id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"object id",
+              "Description":"The content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            }
+          ]
+        },
+        {
+          "MethodName": "Create Reminder",
+          "Synopsis": "Create a reminder on the specified content/campaign and task",
+          "HTTPMethod": "POST",
+          "URI": "/content/:content_id/reminders",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"content_id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"object id",
+              "Description":"The content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            },
+            {
+              "Name":"id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"object_id",
+              "Description":"The task id to create the reminder for"
+            },
+            {
+              "Name":"lead_time",
+              "Required":"Y",
+              "Default":"",
+              "Type":"integer",
+              "Description":"The time in minutes before the reminder should be sent"
+            }
+          ]
+        },
+        {
+          "MethodName": "Update Reminder",
+          "Synopsis": "Update your reminder on the specified content/campaign and task",
+          "HTTPMethod": "PUT",
+          "URI": "/content/:content_id/reminders/:id",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"content_id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"object id",
+              "Description":"The content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            },
+            {
+              "Name":"id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"object_id",
+              "Description":"The task id to update the reminder for"
+            },
+            {
+              "Name":"lead_time",
+              "Required":"Y",
+              "Default":"",
+              "Type":"integer",
+              "Description":"The time in minutes before the reminder should be sent"
+            }
+          ]
+        },
+        {
+          "MethodName": "Delete Reminder",
+          "Synopsis": "Update your reminder on the specified content/campaign and task",
+          "HTTPMethod": "DELETE",
+          "URI": "/content/:content_id/reminders/:id",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"content_id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"object id",
+              "Description":"The content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            },
+            {
+              "Name":"id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"object_id",
+              "Description":"The task id to update the reminder for"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
