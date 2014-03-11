@@ -4,9 +4,9 @@
         "protocol": "http",
         "protocol": "https",
         "baseURL": "qockpit.com",
+        "baseURL": "kapost.com",
         "baseURL": "lvh.me:3000",
         "baseURL": "pilyr.com",
-        "baseURL": "kapost.com",
         "publicPath": "/api/v1",
         "headers" : {
 
