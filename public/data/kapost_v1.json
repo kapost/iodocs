@@ -1388,6 +1388,48 @@
           ]
         }
       ]
+    },
+    {
+      "name":"Analytics <pre>/api/v1/analytics</pre>",
+      "methods":[
+        {
+          "MethodName": "Query Analytics",
+          "Synopsis": "Retrieve raw analytics by content over desired date range.",
+          "HTTPMethod": "GET",
+          "URI": "/analytics/query",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"start_date",
+              "Required":"Y",
+              "Default":"2014-01-01",
+              "Type":"utc date",
+              "Description":"Activity range start date (YYYY-MM-DD)"
+            },
+            {
+              "Name":"end_date",
+              "Required":"Y",
+              "Default":"2014-01-31",
+              "Type":"utc date",
+              "Description":"Activity range end date (YYYY-MM-DD)"
+            },
+            {
+              "Name":"metrics",
+              "Required":"Y",
+              "Default":"page_views",
+              "Type":"array",
+              "Description":"page_views, uniques, downloads, clicks_on_link, youtube_views, youtube_comments, youtube_favorites, number_of_links, twitter_mentions, twitter_retweets, twitter_favorites, facebook_shares, facebook_likes, linkedin_shares"
+            },
+            {
+              "Name":"content_ids",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"Array of content object ids or slugs."
+            }
+          ]
+        }
+      ]
     }
   ]
 }
