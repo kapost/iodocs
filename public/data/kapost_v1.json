@@ -1394,7 +1394,7 @@
       "methods":[
         {
           "MethodName": "Query Analytics",
-          "Synopsis": "Retrieve raw analytics by content over desired date range.",
+          "Synopsis": "Retrieve metrics for any content over a desired date range.",
           "HTTPMethod": "GET",
           "URI": "/analytics/query",
           "RequiresOAuth": "N",
