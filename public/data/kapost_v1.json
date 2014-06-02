@@ -553,7 +553,7 @@
           "MethodName": "Create Campaign",
           "Synopsis": "Create a campaign",
           "HTTPMethod": "POST",
-          "URI": "/campaigns/:id",
+          "URI": "/campaigns",
           "RequiresOAuth": "N",
           "parameters":[
             {
