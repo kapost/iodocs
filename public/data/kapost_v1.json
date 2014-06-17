@@ -191,28 +191,14 @@
           "RequiresOAuth": "N",
           "parameters":[
             {
-              "Name":"idea_title",
+              "Name":"title",
               "Required":"N",
               "Default":"",
               "Type":"string",
-              "Description":"Idea title"
+              "Description":"Title"
             },
             {
-              "Name":"idea",
-              "Required":"N",
-              "Default":"",
-              "Type":"string",
-              "Description":"Idea content (HTML OK)"
-            },
-            {
-              "Name":"content_title",
-              "Required":"N",
-              "Default":"",
-              "Type":"string",
-              "Description":"Content title"
-            },
-            {
-              "Name":"content",
+              "Name":"body",
               "Required":"N",
               "Default":"",
               "Type":"string",
