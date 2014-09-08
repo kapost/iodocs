@@ -1589,7 +1589,7 @@
               "Required":"Y",
               "Default":"page_views",
               "Type":"array",
-              "Description":"page_views, uniques, downloads, clicks_on_link, youtube_views, youtube_comments, youtube_favorites, number_of_links, twitter_mentions, twitter_retweets, twitter_favorites, facebook_shares, facebook_likes, linkedin_shares"
+              "Description":"page_views, uniques, downloads, clicks_on_link, youtube_views, youtube_comments, youtube_favorites, number_of_links, twitter_mentions, twitter_retweets, twitter_favorites, facebook_shares, facebook_likes, linkedin_shares, emails_opened, emails_sent, emails_bounced, email_click_throughs, email_unsubscribes"
             },
             {
               "Name":"content_ids",
