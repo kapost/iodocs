@@ -569,6 +569,13 @@
               "Default":"",
               "Type":"array",
               "Description":"The ids of users that should own the campaign"
+            },
+            {
+              "Name":"custom_fields",
+              "Required":"N",
+              "Default":"",
+              "Type":"hash",
+              "Description":"A hash of custom fields ids to their values"
             }
           ]
         },
@@ -627,6 +634,13 @@
               "Default":"",
               "Type":"array",
               "Description":"The ids of users that should own the campaign"
+            },
+            {
+              "Name":"custom_fields",
+              "Required":"N",
+              "Default":"",
+              "Type":"hash",
+              "Description":"A hash of custom fields ids to their values"
             }
           ]
         },
@@ -659,6 +673,45 @@
               "Default":"",
               "Type":"object_id",
               "Description":"The campaign id"
+            }
+          ]
+        },
+        {
+          "MethodName": "Index Campaigns",
+          "Synopsis": "Returns a paginated list of campaigns",
+          "HTTPMethod": "GET",
+          "URI": "/campaigns",
+          "RequiresOAuth": "N",
+          "parameters": [
+            {
+              "Name":"page",
+              "Required":"N",
+              "Default":"",
+              "Type":"integer",
+              "Description":"Changes page of campaigns returned"
+            }
+          ]
+        },
+        {
+          "MethodName": "Bulk Archive/Delete Campaigns",
+          "Synopsis": "Archives or Deletes a group of campaigns",
+          "HTTPMethod": "POST",
+          "URI": "/campaigns",
+          "RequiresOAuth": "N",
+          "parameters": [
+            {
+              "Name":"ids",
+              "Required":"Y",
+              "Default":"",
+              "Type":"array",
+              "Description":"The campaign ids that the action will be performed on"
+            },
+            {
+              "Name":"command",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"The action you want to perform. Options: ['archive', 'delete']"
             }
           ]
         }
