@@ -1367,6 +1367,75 @@
       ]
     },
     {
+      "name":"Activity (Comments) <pre>/api/v1/ideas/:idea_id/comments/</pre> or <pre>/api/v1/content/:content_id/comments/</pre> or <pre>/api/v1/campaign/:campaign_id/comments/</pre>",
+      "methods":[
+        {
+          "MethodName": "List Comments",
+          "Synopsis": "Retrieves the activity feed for the specified idea, content, or campaign.",
+          "HTTPMethod": "GET",
+          "URI": "/content/:content_id/comments",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"content_id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"object id",
+              "Description":"The content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            }
+          ]
+        },
+
+        {
+          "MethodName": "Create Comment",
+          "Synopsis": "Creates a comment on the specified idea, content, or campaign.",
+          "HTTPMethod": "POST",
+          "URI": "/content/:content_id/comments",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"content_id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"object id",
+              "Description":"The content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            },
+            {
+              "Name":"body",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"The body of the comment"
+            }
+          ]
+        },
+
+        {
+          "MethodName": "Delete Comment",
+          "Synopsis": "Destroys a comment on the specified idea, content, or campaign.",
+          "HTTPMethod": "DELETE",
+          "URI": "/content/:content_id/comments/:id",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"content_id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"The idea/content/campaign id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            },
+            {
+              "Name":"id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"The id of the comment to delete"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name":"Content Visibility<pre>/api/v1/content/:content_id/visibility</pre>",
       "methods":[
         {
