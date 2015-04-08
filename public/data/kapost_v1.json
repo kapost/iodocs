@@ -1,6 +1,302 @@
 {
   "endpoints":[
     {
+      "name":"Ideas <pre>/api/v1/ideas/</pre>",
+      "methods":[
+        {
+          "MethodName": "List Ideas",
+          "Synopsis": "Retrieve a filtered, paged list of idea resources",
+          "HTTPMethod": "GET",
+          "URI": "/ideas",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"detail",
+              "Required":"N",
+              "Default":"basic",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "basic",
+                "full"
+              ],
+              "EnumeratedDescription":{
+                "basic": "A short, summary response",
+                "full": "All idea details are returned"
+              },
+              "Description":"The level of detail in the response for each record"
+            },
+            {
+              "Name":"page",
+              "Required":"N",
+              "Default":"1",
+              "Type":"integer",
+              "Description":"The (1-indexed) page number to retrieve."
+            },
+            {
+              "Name":"per_page",
+              "Required":"N",
+              "Default":"25",
+              "Type":"integer",
+              "Description":"The number of entries to retrieve per page."
+            },
+            {
+              "Name":"state",
+              "Required":"N",
+              "Default":"",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "drafts",
+                "proposed",
+                "approved",
+                "rejected",
+                "archived"
+              ],
+              "Description":"Filter idea by its state"
+            },
+            {
+              "Name":"creator_id",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"Filter ideas by creator (user) ids. Accepts both object ids and slugs, ex. '51f05bc04aaaae4ae800000d' or 'samantha-james-2'"
+            },
+            {
+              "Name":"campaign_ids",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"Filter ideas for specified campaigns. Accepts both object ids and slugs, ex. '51f05bc04aaaae4ae80000d' or 'awesome-video-campaign-1'"
+            },
+            {
+              "Name":"persona_ids",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"If using personas and buying stages, filter by personas object ids targeted by this idea."
+            },
+            {
+              "Name":"stage_ids",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"If using personas and buying stages, filter by buying stage ids targeted by this idea."
+            },
+            {
+              "Name":"categories",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"Filter ideas using the specified category name(s)"
+            },
+            {
+              "Name":"search",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Filter ideas by search phrase"
+            }
+          ]
+        },
+
+        {
+          "MethodName": "Show Idea",
+          "Synopsis": "Retrieve an idea resource",
+          "HTTPMethod": "GET",
+          "URI": "/ideas/:id",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"Idea id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            },
+            {
+              "Name":"detail",
+              "Required":"N",
+              "Default":"",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "basic",
+                "full"
+              ],
+              "EnumeratedDescription":{
+                "basic": "A short, summary response",
+                "full": "All idea details are returned"
+              },
+              "Description":"The level of detail in the response for each record"
+            }
+          ]
+        },
+
+        {
+          "MethodName": "Create Idea",
+          "Synopsis": "Create an idea resource",
+          "HTTPMethod": "POST",
+          "URI": "/ideas",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"title",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Title"
+            },
+            {
+              "Name":"body",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Content of idea (HTML OK)"
+            },
+            {
+              "Name":"is_draft",
+              "Required":"N",
+              "Default":"",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "true",
+                "false"
+              ],
+              "Description":"Whether or not this idea is in draft state"
+            },
+            {
+              "Name":"campaign_ids",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"Array of campaign object ids or slugs associated with this idea"
+            },
+            {
+              "Name":"persona_ids",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"If using personas and buying stages, an array of object id's of personas targeted by this idea."
+            },
+            {
+              "Name":"stage_ids",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"If using personas and buying stages, an array of object id's of buying stages targeted by this idea."
+            },
+            {
+              "Name":"tags",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"A string containing a comma-separated list of tags"
+            }
+          ]
+        },
+
+        {
+          "MethodName": "Update Idea",
+          "Synopsis": "Create an idea resource",
+          "HTTPMethod": "PUT",
+          "URI": "/ideas/:id",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"Idea id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            },
+            {
+              "Name":"title",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Title"
+            },
+            {
+              "Name":"body",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Content of idea (HTML OK)"
+            },
+            {
+              "Name":"operation",
+              "Required":"N",
+              "Default":"",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "reject",
+                "submit",
+                "approve",
+                "archive",
+                "unarchive"
+              ],
+              "Description":"Perform action to change idea state"
+            },
+            {
+              "Name":"is_draft",
+              "Required":"N",
+              "Default":"",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "true",
+                "false"
+              ],
+              "Description":"Whether or not this idea is in draft state"
+            },
+            {
+              "Name":"campaign_ids",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"Array of campaign object ids or slugs associated with this idea"
+            },
+            {
+              "Name":"persona_ids",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"If using personas and buying stages, an array of object id's of personas targeted by this idea."
+            },
+            {
+              "Name":"stage_ids",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"If using personas and buying stages, an array of object id's of buying stages targeted by this idea."
+            },
+            {
+              "Name":"tags",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"A string containing a comma-separated list of tags"
+            }
+          ]
+        },
+
+        {
+          "MethodName": "Delete Idea",
+          "Synopsis": "Destroys an idea",
+          "HTTPMethod": "DELETE",
+          "URI": "/ideas/:id",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"object_id",
+              "Description":"The idea id to delete"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
       "name":"Content <pre>/api/v1/content/</pre>",
       "methods":[
         {
@@ -96,6 +392,13 @@
               "Default":"",
               "Type":"utc date",
               "Description":"Relevant only if filtering by date. Content less than or equal to this timestamp will be returned.<br/><br/><strong>Beta Warning</strong>: The format for this field will soon change to <a href='http://www.w3.org/TR/NOTE-datetime'>ISO 8601</a>."
+            },
+            {
+              "Name":"creator_id",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"Filter content by creator (user) ids. Accepts both object ids and slugs, ex. '51f05bc04aaaae4ae800000d' or 'samantha-james-2'"
             },
             {
               "Name":"listener_id",
@@ -1055,6 +1358,75 @@
               "Default":"",
               "Type":"string",
               "Description":"The id of the task to delete"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name":"Activity (Comments) <pre>/api/v1/ideas/:idea_id/comments/</pre> or <pre>/api/v1/content/:content_id/comments/</pre> or <pre>/api/v1/campaign/:campaign_id/comments/</pre>",
+      "methods":[
+        {
+          "MethodName": "List Comments",
+          "Synopsis": "Retrieves the activity feed for the specified idea, content, or campaign.",
+          "HTTPMethod": "GET",
+          "URI": "/content/:content_id/comments",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"content_id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"object id",
+              "Description":"The content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            }
+          ]
+        },
+
+        {
+          "MethodName": "Create Comment",
+          "Synopsis": "Creates a comment on the specified idea, content, or campaign.",
+          "HTTPMethod": "POST",
+          "URI": "/content/:content_id/comments",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"content_id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"object id",
+              "Description":"The content id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            },
+            {
+              "Name":"body",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"The body of the comment"
+            }
+          ]
+        },
+
+        {
+          "MethodName": "Delete Comment",
+          "Synopsis": "Destroys a comment on the specified idea, content, or campaign.",
+          "HTTPMethod": "DELETE",
+          "URI": "/content/:content_id/comments/:id",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"content_id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"The idea/content/campaign id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            },
+            {
+              "Name":"id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"The id of the comment to delete"
             }
           ]
         }

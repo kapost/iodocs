@@ -29,6 +29,13 @@
         $(this).prev().clone().val("").insertBefore(this);
     })
 
+    $('td.parameter > input.remove-array-entry').click(function() {
+        $inputs = $(this).parent().find('.array-entry');
+        if ($inputs.length > 1) {
+            $inputs.last().remove();
+        }
+    });
+
     // Toggle all endpoints
     $('#toggle-endpoints').click(function(event) {
         event.preventDefault();
