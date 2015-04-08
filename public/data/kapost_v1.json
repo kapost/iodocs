@@ -40,13 +40,6 @@
               "Description":"The number of entries to retrieve per page."
             },
             {
-              "Name":"user_id",
-              "Required":"N",
-              "Default":"",
-              "Type":"object id",
-              "Description":"Ideas filtered for a specified user. Accepts both object ids and slugs, ex. '51f05bc04aaaae4ae800000d' or 'john-6'"
-            },
-            {
               "Name":"state",
               "Required":"N",
               "Default":"",
@@ -94,16 +87,6 @@
               "Default":"",
               "Type":"array",
               "Description":"Filter ideas using the specified category name(s)"
-            },
-            {
-              "Name":"include_empty_categories",
-              "Required":"N",
-              "Default":"",
-              "Type":"enumerated",
-              "EnumeratedList":[
-                "true"
-              ],
-              "Description":"Relevant only if filtering by category"
             },
             {
               "Name":"search",
@@ -237,6 +220,20 @@
               "Default":"",
               "Type":"string",
               "Description":"Content of idea (HTML OK)"
+            },
+            {
+              "Name":"operation",
+              "Required":"N",
+              "Default":"",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "reject",
+                "submit",
+                "approve",
+                "archive",
+                "unarchive"
+              ],
+              "Description":"Perform action to change idea state"
             },
             {
               "Name":"is_draft",
