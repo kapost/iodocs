@@ -47,18 +47,53 @@
               "Description":"Ideas filtered for a specified user. Accepts both object ids and slugs, ex. '51f05bc04aaaae4ae800000d' or 'john-6'"
             },
             {
-              "Name":"campaign_id",
+              "Name":"state",
               "Required":"N",
               "Default":"",
-              "Type":"object id",
-              "Description":"Ideas filtered for a specified campaign. Accepts both object ids and slugs, ex. '51f05bc04aaaae4ae80000d' or 'awesome-video-campaign-1'"
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "drafts",
+                "proposed",
+                "approved",
+                "rejected",
+                "archived"
+              ],
+              "Description":"Filter idea by its state"
             },
             {
-              "Name":"category",
+              "Name":"creator_id",
               "Required":"N",
               "Default":"",
               "Type":"array",
-              "Description":"Filter content using the specified category name(s)"
+              "Description":"Filter ideas by creator (user) ids. Accepts both object ids and slugs, ex. '51f05bc04aaaae4ae800000d' or 'samantha-james-2'"
+            },
+            {
+              "Name":"campaign_ids",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"Filter ideas for specified campaigns. Accepts both object ids and slugs, ex. '51f05bc04aaaae4ae80000d' or 'awesome-video-campaign-1'"
+            },
+            {
+              "Name":"persona_ids",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"If using personas and buying stages, filter by personas object ids targeted by this idea."
+            },
+            {
+              "Name":"stage_ids",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"If using personas and buying stages, filter by buying stage ids targeted by this idea."
+            },
+            {
+              "Name":"categories",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"Filter ideas using the specified category name(s)"
             },
             {
               "Name":"include_empty_categories",
@@ -71,45 +106,18 @@
               "Description":"Relevant only if filtering by category"
             },
             {
-              "Name":"creator_id",
-              "Required":"N",
-              "Default":"",
-              "Type":"array",
-              "Description":"Filter ideas by creator (user) ids. Accepts both object ids and slugs, ex. '51f05bc04aaaae4ae800000d' or 'samantha-james-2'"
-            },
-            {
-              "Name":"content_type_id",
-              "Required":"N",
-              "Default":"",
-              "Type":"object id",
-              "Description":"Filter content by content type id. Accepts an object id only."
-            },
-            {
               "Name":"search",
               "Required":"N",
               "Default":"",
               "Type":"string",
-              "Description":"Filter content by search phrase"
-            },
-            {
-              "Name":"state",
-              "Required":"N",
-              "Default":"",
-              "Type":"enumerated",
-              "EnumeratedList":[
-                "draft",
-                "proposed",
-                "approved",
-                "rejected",
-                "archived"
-              ],
-              "Description":"Filter idea by its state"
+              "Description":"Filter ideas by search phrase"
             }
           ]
         },
+
         {
           "MethodName": "Show Idea",
-          "Synopsis": "Retrieve a idea resource",
+          "Synopsis": "Retrieve an idea resource",
           "HTTPMethod": "GET",
           "URI": "/ideas/:id",
           "RequiresOAuth": "N",
@@ -141,7 +149,7 @@
 
         {
           "MethodName": "Create Idea",
-          "Synopsis": "Create a idea resource",
+          "Synopsis": "Create an idea resource",
           "HTTPMethod": "POST",
           "URI": "/ideas",
           "RequiresOAuth": "N",
@@ -179,11 +187,74 @@
               "Description":"Array of campaign object ids or slugs associated with this idea"
             },
             {
+              "Name":"persona_ids",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"If using personas and buying stages, an array of object id's of personas targeted by this idea."
+            },
+            {
+              "Name":"stage_ids",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"If using personas and buying stages, an array of object id's of buying stages targeted by this idea."
+            },
+            {
               "Name":"tags",
               "Required":"N",
               "Default":"",
               "Type":"string",
               "Description":"A string containing a comma-separated list of tags"
+            }
+          ]
+        },
+
+        {
+          "MethodName": "Update Idea",
+          "Synopsis": "Create an idea resource",
+          "HTTPMethod": "PUT",
+          "URI": "/ideas/:id",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"string",
+              "Description":"Idea id or slug, ex 'welcome-to-kapost' or '51f05bc04aaaae4ae800000d'"
+            },
+            {
+              "Name":"title",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Title"
+            },
+            {
+              "Name":"body",
+              "Required":"N",
+              "Default":"",
+              "Type":"string",
+              "Description":"Content of idea (HTML OK)"
+            },
+            {
+              "Name":"is_draft",
+              "Required":"N",
+              "Default":"",
+              "Type":"enumerated",
+              "EnumeratedList":[
+                "true",
+                "false"
+              ],
+              "Description":"Whether or not this idea is in draft state"
+            },
+            {
+              "Name":"campaign_ids",
+              "Required":"N",
+              "Default":"",
+              "Type":"array",
+              "Description":"Array of campaign object ids or slugs associated with this idea"
             },
             {
               "Name":"persona_ids",
@@ -200,11 +271,28 @@
               "Description":"If using personas and buying stages, an array of object id's of buying stages targeted by this idea."
             },
             {
-              "Name":"content_type_id",
+              "Name":"tags",
               "Required":"N",
               "Default":"",
-              "Type":"object id",
-              "Description":"Change the content type"
+              "Type":"string",
+              "Description":"A string containing a comma-separated list of tags"
+            }
+          ]
+        },
+
+        {
+          "MethodName": "Delete Idea",
+          "Synopsis": "Destroys an idea",
+          "HTTPMethod": "DELETE",
+          "URI": "/ideas/:id",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"id",
+              "Required":"Y",
+              "Default":"",
+              "Type":"object_id",
+              "Description":"The idea id to delete"
             }
           ]
         }
