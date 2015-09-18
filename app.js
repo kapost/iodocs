@@ -319,6 +319,12 @@ function processRequest(req, res, next) {
         key = req.sessionID + ':' + apiName,
         kapost_instance = reqQuery.instance;
 
+    // MSZ: for some reason the "params" object prototype
+    // is messed up when we get here and it lacks "basic"
+    // functions like "hasOwnProperty"
+    delete params.__proto__;
+    params = JSON.parse(JSON.stringify(params));
+
     // Extract custom headers from the params
     for( var param in params )
     {
