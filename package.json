@@ -33,7 +33,7 @@
   "main": "index",
   "engines": {
     "node": "0.10.x",
-    "npm": ">= 1.1.49"
+    "npm": ">= 3.5.x"
   },
   "scripts": {
     "start": "node_modules/.bin/supervisor -e 'js|json' app"
