@@ -1,6 +1,6 @@
 {
     "kapost_v1": {
-        "name": "Kapost API v1 (beta)",
+        "name": "Kapost API v1",
         "protocol": "http",
         "protocol": "https",
         "baseURL": "qockpit.com",
