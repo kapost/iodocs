@@ -559,14 +559,14 @@
               "Required":"N",
               "Default":"",
               "Type":"utc date",
-              "Description":"Unix timestamp (in milliseconds, ex '1376092036000')"
+              "Description":"Unix timestamp (in <a href='http://www.w3.org/TR/NOTE-datetime'>ISO 8601</a>)"
             },
             {
               "Name":"publish_deadline",
               "Required":"N",
               "Default":"",
               "Type":"utc date",
-              "Description":"Unix timestamp (in milliseconds, ex '1376092036000')"
+              "Description":"Unix timestamp (in <a href='http://www.w3.org/TR/NOTE-datetime'>ISO 8601</a>)"
             },
             {
               "Name":"payment_type",
@@ -735,14 +735,14 @@
               "Required":"N",
               "Default":"",
               "Type":"utc date",
-              "Description":"Unix timestamp (in milliseconds, ex '1376092036000')"
+              "Description":"Unix timestamp (in <a href='http://www.w3.org/TR/NOTE-datetime'>ISO 8601</a>)"
             },
             {
               "Name":"publish_deadline",
               "Required":"N",
               "Default":"",
               "Type":"utc date",
-              "Description":"Unix timestamp (in milliseconds, ex '1376092036000')"
+              "Description":"Unix timestamp (in <a href='http://www.w3.org/TR/NOTE-datetime'>ISO 8601</a>)"
             },
             {
               "Name":"payment_type",
