@@ -295,7 +295,6 @@
         }
       ]
     },
-
     {
       "name":"Content <pre>/api/v1/content/</pre>",
       "methods":[
@@ -2035,6 +2034,48 @@
           ]
         }
       ]
-    }
+    },
+    {
+      "name":"Content Analytics <pre>/api/v1/insights/content</pre>",
+      "methods":[
+        {
+          "MethodName": "List Analytics",
+          "Synopsis": "Retrieve content analytics",
+          "HTTPMethod": "GET",
+          "URI": "/insights/content",
+          "RequiresOAuth": "N",
+          "parameters":[
+            {
+              "Name":"content_ids",
+              "Required":"Y",
+              "Default":"",
+              "Type":"array",
+              "Description":"Specify the content you want to retrieve analytics for. Expects ids, ex '51f05bc04aaaae4ae80000d'"
+            },
+            {
+              "Name":"stats",
+              "Required":"N",
+              "Default":"page_views",
+              "Type":"array",
+              "Description":"Specify which stats you want to retrieve. Valid options: page_views facebook_likes facebook_shares facebook_comments downloads email_opens linkedin_shares twitter_mentions twitter_favorites twitter_retweets youtube_comments youtube_likes youtube_favorites youtube_views gallery_shares vidyard_views"
+           },
+           {
+             "Name":"start_date",
+             "Required":"N",
+             "Default":"",
+             "Type":"utc date",
+             "Description":"iso8601-formatted start of the range to retrieve analytics"
+           },
+           {
+             "Name":"end_date",
+             "Required":"N",
+             "Default":"",
+             "Type":"utc date",
+             "Description":"iso8601-formatted end of the range to retrieve analytics"
+           }
+         ]
+       }
+     ]
+   }
   ]
 }
