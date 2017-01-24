@@ -2,23 +2,18 @@
   "name": "iodocs",
   "version": "0.0.1",
   "description": "Live API Documentation and Browsing",
-  "homepage": "http://mashery.com",
+  "homepage": "http://kapost.com",
   "keywords": [
     "livedocs",
     "iodocs",
     "documentation",
     "api"
   ],
-  "author": "Mashery, Inc. <nmansilla@mashery.com>",
-  "contributors": [
-    "Kelly Miyashiro <kelly@mashery.com.com>",
-    "Neil Mansilla <neil@mashery.com>",
-    "Mike Squires <msquires@mashery.com>",
-    "Uriah Welcome <uriah@mashery.com>"
-  ],
+  "author": "Nader Akhnoukh <nader@kapsot.com>",
+  "contributors": [],
   "repository": {
     "type": "git",
-    "url": "git://github.com/mashery/iodocs.git"
+    "url": "git://github.com/kapost/iodocs.git"
   },
   "dependencies": {
     "connect-redis": "1.0.6",
