@@ -277,7 +277,7 @@ function oauthSuccess(req, res, next) {
     });
 }
 
-// Delete blank param entries in arbitrary objects. 
+// Delete blank param entries in arbitrary objects.
 function removeBlankEntries(obj) {
     for(var param in obj) {
         if(obj.hasOwnProperty(param)) {
@@ -734,6 +734,18 @@ app.get('/', function(req, res) {
 
 app.get('/webhooks', function(req, res) {
     res.render('webhooks', {
+        title: config.title
+    });
+});
+
+app.get('/configure-xmlrpc', function(req, res) {
+    res.render('xmlrpc', {
+        title: config.title
+    });
+});
+
+app.get('/configure-xmlrpcFiles', function(req, res) {
+    res.render('xmlrpcFiles', {
         title: config.title
     });
 });
